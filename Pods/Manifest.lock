@@ -1,0 +1,124 @@
+PODS:
+  - Alamofire (5.0.0-beta.6)
+  - Cache (5.2.0)
+  - Crashlytics (3.13.3):
+    - Fabric (~> 1.10.2)
+  - Fabric (1.10.2)
+  - Firebase/Core (6.4.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.0.3)
+  - Firebase/CoreOnly (6.4.0):
+    - FirebaseCore (= 6.0.4)
+  - FirebaseAnalytics (6.0.3):
+    - FirebaseCore (~> 6.0)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.0.3)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (6.0.4):
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/Logger (~> 6.0)
+  - FirebaseInstanceID (4.2.1):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - GoogleAppMeasurement (6.0.3):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (6.2.1):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.2.1)
+  - GoogleUtilities/Logger (6.2.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.2.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.2.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.2.1)"
+  - GoogleUtilities/Reachability (6.2.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.2.1):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - OHHTTPStubs/Core (7.0.0)
+  - OHHTTPStubs/Default (7.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (7.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (7.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (7.0.0)
+  - OHHTTPStubs/Swift (7.0.0):
+    - OHHTTPStubs/Default
+  - PKHUD (5.3.0)
+  - SDWebImage (5.0.6):
+    - SDWebImage/Core (= 5.0.6)
+  - SDWebImage/Core (5.0.6)
+  - SwiftLint (0.33.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.0-beta.5)
+  - Cache
+  - Crashlytics (~> 3.13.3)
+  - Fabric (~> 1.10.2)
+  - Firebase/Core
+  - OHHTTPStubs/Swift (~> 7.0.0)
+  - PKHUD (~> 5.0)
+  - SDWebImage (~> 5.0)
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Cache
+    - Crashlytics
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - nanopb
+    - OHHTTPStubs
+    - PKHUD
+    - SDWebImage
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: cd08a4402bd12cacd0c66f23fb12fec8d6b965e4
+  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
+  Crashlytics: 2aa08cd61fb1d62718c4e653169461d1d7377de2
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Firebase: 9445469655a98e9010737f4bc4720e5bda465873
+  FirebaseAnalytics: 69fe25866d2ec87c6f02d72c3c9a82bce9c065a0
+  FirebaseCore: 7ea99e200f0024262650be56623fbe6a7bef1707
+  FirebaseInstanceID: 9782fcfb89e4d7da76cc28eac4b8543dc7be4a4b
+  GoogleAppMeasurement: 1e45fa601e6280c180880d57010390f6679cd971
+  GoogleUtilities: c7a0b08bda3bf808be823ed151f0e28ac6866e71
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  OHHTTPStubs: ef33a2c353110d306bb98f695435ec56ff5a26c3
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
+  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SwiftLint: 9fc1143bbacec37f94994a7d0d2a85b2154b6294
+
+PODFILE CHECKSUM: baed5660ef6769042c57140ef0ca87491f9f0d7d
+
+COCOAPODS: 1.7.3
