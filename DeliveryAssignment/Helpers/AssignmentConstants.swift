@@ -37,21 +37,3 @@ struct CellViewConstants {
   static let labelFontSize: CGFloat = 20.0
   
 }
-
-struct StringIdentifiers {
-  static let noInternet = "NOInternet".localized
-  static let errorHeading = "Attention".localized
-  static let errorRefreshingData = "errorRefreshData".localized
-  static let messageHeading = "Message".localized
-  static let deliveryListTitle = "DeliveryListTitle".localized
-  static let refreshDataMessage = "refreshControl.text".localized
-  static let deliveryDetailTitle = "DeliveryDetailsTitle".localized
-  static let alertButtonTitleOK = "OK".localized
-  
-}
-
-extension String {
-  var localized: String {
-    return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
-  }
-}

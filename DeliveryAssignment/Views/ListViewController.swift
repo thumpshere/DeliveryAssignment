@@ -39,7 +39,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
   func setConstraintsOnTableView() {
     let viewsDict = [
       "table": listTable,
-      "mainView": self.view
     ]
     self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[table]-0-|", options: [], metrics: nil, views: viewsDict as [String: Any]))
     self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[table]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: viewsDict as [String: Any]))
