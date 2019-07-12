@@ -36,7 +36,9 @@ class ListViewModel: NSObject {
     print("Calling API")
     
     apiRequestManager.getDataToBeShownIntoList(offset: offset, limit: limit, success: {[weak self] (modelArray) in
+      if modelArray.count > 0 {
       self?.processApiData(modelDataArray: modelArray)
+      }
     }, failure: {[weak self] (error) in
       self?.processFailedAPI(error: error)
     })

@@ -38,6 +38,7 @@
 		4937A72722D756DA0040B4A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4937A72622D756DA0040B4A1 /* Localizable.strings */; };
 		4937A72922D856BA0040B4A1 /* LocalizationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A72822D856BA0040B4A1 /* LocalizationConstants.swift */; };
 		4937A72B22D857F90040B4A1 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A72A22D857F90040B4A1 /* String+Extension.swift */; };
+		4937A73322D86D330040B4A1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4937A73222D86D330040B4A1 /* README.md */; };
 		756F0552DD4EDD7A1D83B13B /* Pods_DeliveryAssignmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F95C22796DE15B90105307 /* Pods_DeliveryAssignmentTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		4937A72622D756DA0040B4A1 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		4937A72822D856BA0040B4A1 /* LocalizationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalizationConstants.swift; path = ../DeliveryAssignment/Helpers/LocalizationConstants.swift; sourceTree = "<group>"; };
 		4937A72A22D857F90040B4A1 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+Extension.swift"; path = "../Helpers/String+Extension.swift"; sourceTree = "<group>"; };
+		4937A73222D86D330040B4A1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		74E99CE7AB7F8842259CE636 /* Pods-DeliveryAssignmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryAssignmentTests.release.xcconfig"; path = "Target Support Files/Pods-DeliveryAssignmentTests/Pods-DeliveryAssignmentTests.release.xcconfig"; sourceTree = "<group>"; };
 		863674880ADF7E0D05825600 /* Pods_DeliveryAssignmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeliveryAssignmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBCC5513A1A6367B430AE1C8 /* Pods-DeliveryAssignmentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryAssignmentUITests.release.xcconfig"; path = "Target Support Files/Pods-DeliveryAssignmentUITests/Pods-DeliveryAssignmentUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		4937A6AA22D74C6B0040B4A1 = {
 			isa = PBXGroup;
 			children = (
+				4937A73222D86D330040B4A1 /* README.md */,
 				4937A6B522D74C6B0040B4A1 /* DeliveryAssignment */,
 				4937A6CA22D74C6C0040B4A1 /* DeliveryAssignmentTests */,
 				4937A6D522D74C6C0040B4A1 /* DeliveryAssignmentUITests */,
@@ -446,6 +449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4937A73322D86D330040B4A1 /* README.md in Resources */,
 				4937A72722D756DA0040B4A1 /* Localizable.strings in Resources */,
 				4937A6FF22D74CD90040B4A1 /* Main.storyboard in Resources */,
 				4937A70722D74CD90040B4A1 /* GoogleService-Info.plist in Resources */,

@@ -18,7 +18,7 @@ Xcode : 10.2
 - ViewModel: Stands between view and model . All business logic are handled in viewModel. It receives the event form view and interacts with the model. ViewModel execute the logic to update the model based on the event.
 - View: View and ViewControllers comes under this layer. This layer receives user interaction and send the events to ViewModel layer. It also observe the updation in viewModel and update the UI accordingly. 
 
-<img width="423" alt="Screenshot 2019-05-04 at 7 07 57 PM" src="https://user-images.githubusercontent.com/4084959/57179862-0806d900-6ea0-11e9-96dc-c2f415302711.png">
+
 
 # Supported OS version
  iOS (10.x, 11.x, 12.x)  
@@ -32,8 +32,9 @@ Swift 5.0
 # "Pod Used"      
 - Alamofire
 - SDWebImage
-- MBProgressHUD
- - OHHTTPStubs/Swift
+- Cache
+- PKHUD
+- OHHTTPStubs/Swift
 - SwiftLint
 - Firebase/Core'
 - Fabric
@@ -78,6 +79,7 @@ Swift 5.0
 - UITesting
 
 # Screenshots
-<img width="413" alt="Screenshot 2019-05-04 at 1 35 33 PM" src="https://user-images.githubusercontent.com/4084959/57176154-02929a00-6e72-11e9-9345-dca495402ae2.png">
+<img width="413" alt="Simulator Screen Shot - iPhone Xʀ - 2019-07-12 at 14 44" src="https://user-images.githubusercontent.com/10941262/61122551-b3936180-a4bf-11e9-8a0a-c66b9869569a.png">"
 
-<img width="411" alt="Screenshot 2019-05-04 at 1 38 35 PM" src="https://user-images.githubusercontent.com/4084959/57176214-beec6000-6e72-11e9-8860-26d3089da62f.png">
+<img width="413" alt="Simulator Screen Shot - iPhone Xʀ - 2019-07-12 at 14 44 45" src="https://user-images.githubusercontent.com/10941262/61122558-b8f0ac00-a4bf-11e9-9561-cc6b10cb1084.png"
+
