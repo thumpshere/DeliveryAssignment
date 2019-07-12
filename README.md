@@ -81,5 +81,5 @@ Swift 5.0
 # Screenshots
 <img width="413" alt="Simulator Screen Shot - iPhone Xʀ - 2019-07-12 at 14 44" src="https://user-images.githubusercontent.com/10941262/61122551-b3936180-a4bf-11e9-8a0a-c66b9869569a.png">"
 
-<img width="413" alt="Simulator Screen Shot - iPhone Xʀ - 2019-07-12 at 14 44 45" src="https://user-images.githubusercontent.com/10941262/61122558-b8f0ac00-a4bf-11e9-9561-cc6b10cb1084.png"
+<img width="413" alt="Simulator Screen Shot - iPhone Xʀ - 2019-07-12 at 14 44 45" src="https://user-images.githubusercontent.com/10941262/61122558-b8f0ac00-a4bf-11e9-9561-cc6b10cb1084.png">"
 
