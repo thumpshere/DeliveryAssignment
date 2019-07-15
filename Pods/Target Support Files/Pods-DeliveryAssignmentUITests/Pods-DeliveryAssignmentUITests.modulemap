@@ -1,6 +1,0 @@
-framework module Pods_DeliveryAssignmentUITests {
-  umbrella header "Pods-DeliveryAssignmentUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
