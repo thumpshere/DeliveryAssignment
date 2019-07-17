@@ -12,7 +12,8 @@ To run the project :
 - Open podfile from project directory. 
 - Open terminal and cd to the directory containing the Podfile.
 - Run the "pod install" command.
-- locate and open the .xcworkspace Xcode project file and start coding. (You should no longer open the xcodeproj file)
+- if You get any error try running "pod repo update" and then "pod install".
+- locate and open the .xcworkspace Xcode project file. (You should no longer open the xcodeproj file)
 
 # Prerequisites
 Xcode : 10.2

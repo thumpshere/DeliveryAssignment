@@ -21,9 +21,8 @@ class AssignmentHelper: NSObject {
       successBlock()
     })
   }
-
-class func isConnectedToInternet() -> Bool {
+  
+  class func isConnectedToInternet() -> Bool {
     return NetworkReachabilityManager()!.isReachable
   }
-  
 }

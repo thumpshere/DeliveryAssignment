@@ -20,10 +20,9 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
     super.viewDidLoad()
     self.handleCallBacksFromViewModel()
     self.createUI()
-    // Do any additional setup after loading the view.
   }
   
-  // MARK: CREATE UI METHODS
+  // MARK: UI  CONFIGURATION METHODS
   func createUI () {
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     self.navigationController?.isNavigationBarHidden = false
@@ -97,6 +96,7 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
     self.navigationController?.pushViewController(detailVC, animated: true)
   }
   
+  // MARK: SCROLLVIEW DELEGATE FUNCTIONS
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {    
     if self.viewModel.isAtBottomOfScrollView(scrollView: scrollView) {
       //reach bottom
@@ -107,11 +107,13 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
     }
   }
   
+  // MARK: Refresh data Handler
   @objc func refresh() {
     // refresh all Data
     self.viewModel.refreshData()
   }
   
+  // MARK: ViewModel Callback Handler
   func handleCallBacksFromViewModel() {
     
     self.viewModel.dataLoadingSuccess = {[weak self] () -> Void in
@@ -134,7 +136,7 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
     
     self.viewModel.showAlert = { (message) -> Void in
       AssignmentHelper.showAlert(title: LocalizedKeys.messageHeading, message: message, success: { () in
-       self.deliveriesTable.reloadData()
+        self.deliveriesTable.reloadData()
       })
     }
   }
@@ -152,5 +154,5 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
       self.deliveriesTable.reloadData()
     }
   }
-
+  
 }

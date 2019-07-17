@@ -30,7 +30,7 @@ class DeliveryDetailViewController: UIViewController, MKMapViewDelegate {
   }
   
   func showDetailView() {
- 
+    
     let img = UIImageView()
     let message = UILabel()
     img.backgroundColor = .red

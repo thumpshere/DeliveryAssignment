@@ -15,7 +15,7 @@ struct Constants {
   static let testObjectKey = "testCachedObject"
   static let dataStoreId =  "apiData"
   static let dataEmptyFromServer =  "emptyDataFromServer"
-
+  
 }
 
 struct ScreenDimensions {
@@ -23,8 +23,18 @@ struct ScreenDimensions {
   static let screenHeight = UIScreen.main.bounds.height
 }
 
+struct ParameterKeys {
+  static let keyOffset = "offset"
+  static let keyLimit = "limit"
+  static let keyAmpersand = "&"
+}
+
+struct BaseURLs {
+  static let testUrl = "https://mock-api-mobile.dev.lalamove.com/"
+}
+
 struct PathURLs {
-  static let deliveriesUrl = "https://mock-api-mobile.dev.lalamove.com/deliveries?"
+  static let deliveriesUrl = "deliveries?"
 }
 
 struct CellIdentifiers {
@@ -35,5 +45,4 @@ struct CellViewConstants {
   static let imageCornerRadius: CGFloat = 40.0
   static let cellBorderWidth: CGFloat = 2.0
   static let labelFontSize: CGFloat = 20.0
-  
 }

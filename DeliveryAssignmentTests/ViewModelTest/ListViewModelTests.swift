@@ -31,7 +31,7 @@ class ListViewModelTests: XCTestCase {
     listViewModel.deliveries.removeAll()
     listViewModel.shouldRefresh = true
     listViewModel.dataStoreKey = Constants.testObjectKey
-    listViewModel.getDataForList()
+    listViewModel.getDeliveries()
     XCTAssertEqual(listViewModel.deliveries.count, 1)
     getViewModelForDeliveryDetail()
   }  
@@ -65,7 +65,7 @@ class ListViewModelTests: XCTestCase {
   }
   
   func getViewModelForDeliveryDetail () {
-   let viewModel =  listViewModel.getViewModelForIndex(index: 0)
+    let viewModel =  listViewModel.getViewModelForIndex(index: 0)
     XCTAssert(viewModel.isKind(of: DeliveryDetailViewModel.self))
   }
   

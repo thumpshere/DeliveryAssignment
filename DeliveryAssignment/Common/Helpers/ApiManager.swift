@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 protocol APIManagerProtocol {
-   func fetchDeliveries (offset: Int, limit: Int, success successBlock: @escaping (([DeliveryObject]) -> Void), failure failureBlock: @escaping ((AnyObject) -> Void))
+  func fetchDeliveries (offset: Int, limit: Int, success successBlock: @escaping (([DeliveryObject]) -> Void), failure failureBlock: @escaping ((AnyObject) -> Void))
 }
 
 class ApiManager: APIManagerProtocol {
@@ -19,7 +19,8 @@ class ApiManager: APIManagerProtocol {
     if !AssignmentHelper.isConnectedToInternet() {
       return failureBlock(LocalizedKeys.noInternet as AnyObject)
     }
-    let requestURL = "\(PathURLs.deliveriesUrl)offset=\(offset)&limit=\(limit)"
+    let requestURL: String =  BaseURLs.testUrl + PathURLs.deliveriesUrl + ParameterKeys.keyOffset + "=\(offset)" + ParameterKeys.keyAmpersand + ParameterKeys.keyLimit + "=\(limit)"
+    
     let decoder = JSONDecoder()
     AF.request(requestURL).responseData { response in
       // response serialization result

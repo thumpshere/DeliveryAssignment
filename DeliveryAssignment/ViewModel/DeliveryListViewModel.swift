@@ -17,15 +17,15 @@ class DeliveryListViewModel: NSObject {
   var dataLoadingError:(() -> Void)?
   var showLoader:(() -> Void)?
   var showAlert:((_ message: String) -> Void)?
-  var limit: Int=20
-  var offset: Int=0
+  var limit: Int = 20
+  var offset: Int = 0
   var deliveries = [DeliveryObject]()
   var shouldRefresh = false
   var willLoadFirstTime = false
   var isDataLoading = false
   var dataStoreKey: String?
   
-  func getDataForList() {
+  func getDeliveries() {
     
     if self.isDataLoading || !self.isNetworkAvailable() {
       return
@@ -36,22 +36,25 @@ class DeliveryListViewModel: NSObject {
     shouldRefresh ? (offset = 0) : (offset = self.deliveries.count)
     print("Calling API")
     
-    apiRequestManager.fetchDeliveries(offset: offset, limit: limit, success: {[weak self] (modelArray) in
-      if modelArray.count > 0 {
-      self?.processApiData(modelDataArray: modelArray)
+    apiRequestManager.fetchDeliveries(offset: offset, limit: limit, success: {[weak self] (deliveryResponse) in
+      
+      if !deliveryResponse.isEmpty {
+        self?.processApiData(deliveryArray: deliveryResponse)
+      } else {
+        self?.dataLoadingError?()
       }
-    }, failure: {[weak self] (error) in
-      self?.processFailedAPI(error: error)
+      }, failure: {[weak self] (error) in
+        self?.processFailedAPI(error: error)
     })
   }
   
-  func processApiData(modelDataArray: [DeliveryObject]) {
+  func processApiData(deliveryArray: [DeliveryObject]) {
     print("response sucesss")
     if self.shouldRefresh {
       self.deliveries.removeAll()
       self.deleteDataFromCache(keyString: self.dataStoreKey ?? "")
     }
-    self.deliveries.append(contentsOf: modelDataArray)
+    self.deliveries.append(contentsOf: deliveryArray)
     self.shouldRefresh = false
     self.isDataLoading = false
     self.willLoadFirstTime = false
@@ -62,23 +65,24 @@ class DeliveryListViewModel: NSObject {
   func processFailedAPI(error: AnyObject) {
     print("response error")
     self.dataLoadingError?()
+    self.checkIfDataIsEmpty()
     self.isDataLoading = false
     if let err = error as? Error {
       self.showAlert?(err.localizedDescription)
     } else if let err = error as? String {
-       self.showAlert?(err)
+      self.showAlert?(err)
     }
   }
   
   func saveDataToCache (data: [DeliveryObject], keyString: String) {
-   StorageHelper.sharedInstance.saveDataToCache(data: data, keyString: keyString)
+    StorageHelper.sharedInstance.saveDataToCache(data: data, keyString: keyString)
   }
   
   func getDataFromCache(keyString: String) {
     let cachedData = StorageHelper.sharedInstance.getDataFromCache(keyString: keyString)
     if cachedData.count == 0 {
       willLoadFirstTime = true
-      self.getDataForList()
+      self.getDeliveries()
       return
     }
     // use the cached version
@@ -90,7 +94,7 @@ class DeliveryListViewModel: NSObject {
     StorageHelper.sharedInstance.deleteDataFromCache(keyString: keyString)
   }
   
-  func checkIfDataISEmpty() {
+  func checkIfDataIsEmpty() {
     if self.deliveries.isEmpty {
       self.emptyData?()
       return
@@ -102,12 +106,12 @@ class DeliveryListViewModel: NSObject {
       return
     }
     self.shouldRefresh = true
-    self.getDataForList()
+    self.getDeliveries()
   }
   
   func isNetworkAvailable() -> Bool {
     if !AssignmentHelper.isConnectedToInternet() {
-      self.checkIfDataISEmpty()
+      self.checkIfDataIsEmpty()
       self.dataLoadingError?()
       self.showAlert?(LocalizedKeys.noInternet)
       return false
@@ -126,15 +130,15 @@ class DeliveryListViewModel: NSObject {
   }
   
   func isAtBottomOfScrollView(scrollView: UIScrollView) -> Bool {
-     if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+    if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
       return true
     }
     return false
   }
- 
+  
   func loadMoreDataForTable(table: UITableView) {
     if (table.contentOffset.y + table.frame.size.height) >= (table.contentSize.height-200) {
-      self.getDataForList()
+      self.getDeliveries()
     }
   }
 }

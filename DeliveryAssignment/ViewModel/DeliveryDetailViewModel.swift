@@ -11,8 +11,8 @@ import MapKit
 import SDWebImage
 
 class DeliveryDetailViewModel: NSObject {
- var deliveryDataObject: DeliveryObject?
-   let regionRadius: CLLocationDistance = 1000
+  var deliveryDataObject: DeliveryObject?
+  let regionRadius: CLLocationDistance = 1000
   
   init(delivery: DeliveryObject) {
     self.deliveryDataObject = delivery
@@ -29,9 +29,8 @@ class DeliveryDetailViewModel: NSObject {
     mapView.setRegion(coordinateRegion, animated: true)
     let location = MKPointAnnotation()
     location.title = deliveryDataObject?.location?.address
-        location.coordinate = CLLocationCoordinate2D(latitude: deliveryDataObject?.location?.lat ?? 0, longitude: deliveryDataObject?.location?.lng ?? 0)
+    location.coordinate = CLLocationCoordinate2D(latitude: deliveryDataObject?.location?.lat ?? 0, longitude: deliveryDataObject?.location?.lng ?? 0)
     mapView.addAnnotation(location)
     return mapView
   }
-    
 }

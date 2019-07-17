@@ -16,10 +16,10 @@ class StorageHelper: NSObject {
     memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10),
     transformer: TransformerFactory.forCodable(ofType: [DeliveryObject].self)
   )
-
+  
   func getDataFromCache(keyString: String) -> [DeliveryObject] {
-      let cachedData = (try? storage?.object(forKey: keyString)) ?? [DeliveryObject]()
-      return cachedData
+    let cachedData = (try? storage?.object(forKey: keyString)) ?? [DeliveryObject]()
+    return cachedData
   }
   
   func saveDataToCache (data: [DeliveryObject], keyString: String) {
@@ -37,5 +37,4 @@ class StorageHelper: NSObject {
       
     }
   }
-  
 }
