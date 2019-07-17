@@ -13,3 +13,5 @@
 "DeliveryListTitle" = "Things to Deliver";
 "refreshControl.text" = "Pull to refresh";
 "errorRefreshData" = "Error Refreshing Data";
+"emptyData" = "No Data Found";
+"at" = " at ";

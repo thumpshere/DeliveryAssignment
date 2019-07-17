@@ -16,9 +16,10 @@ class ListViewModel: NSObject {
   var dataLoadingSuccess:(() -> Void)?
   var dataLoadingError:(() -> Void)?
   var showLoader:(() -> Void)?
+  var showAlert:((_ message: String) -> Void)?
   var limit: Int=20
   var offset: Int=0
-  var dataModelArray = [ListObject]()
+  var deliveries = [ListObject]()
   var shouldRefresh = false
   var willLoadFirstTime = false
   var isDataLoading = false
@@ -26,16 +27,16 @@ class ListViewModel: NSObject {
   
   func getDataForList() {
     
-    if self.isDataLoading {
+    if self.isDataLoading || !self.isNetworkAvailable() {
       return
     }
     if willLoadFirstTime {
       self.showLoader?()
     }
-    shouldRefresh ? (offset = 0) : (offset = self.dataModelArray.count)
+    shouldRefresh ? (offset = 0) : (offset = self.deliveries.count)
     print("Calling API")
     
-    apiRequestManager.getDataToBeShownIntoList(offset: offset, limit: limit, success: {[weak self] (modelArray) in
+    apiRequestManager.fetchDeliveries(offset: offset, limit: limit, success: {[weak self] (modelArray) in
       if modelArray.count > 0 {
       self?.processApiData(modelDataArray: modelArray)
       }
@@ -47,15 +48,15 @@ class ListViewModel: NSObject {
   func processApiData(modelDataArray: [ListObject]) {
     print("response sucesss")
     if self.shouldRefresh {
-      self.dataModelArray.removeAll()
+      self.deliveries.removeAll()
       self.deleteDataFromCache(keyString: self.dataStoreKey ?? "")
     }
-    self.dataModelArray.append(contentsOf: modelDataArray)
+    self.deliveries.append(contentsOf: modelDataArray)
     self.shouldRefresh = false
     self.isDataLoading = false
     self.willLoadFirstTime = false
-    self.saveDataToCache(data: self.dataModelArray, keyString: self.dataStoreKey ?? "")
     self.dataLoadingSuccess?()
+    self.saveDataToCache(data: self.deliveries, keyString: self.dataStoreKey ?? "")
   }
   
   func processFailedAPI(error: AnyObject) {
@@ -63,19 +64,14 @@ class ListViewModel: NSObject {
     self.dataLoadingError?()
     self.isDataLoading = false
     if let err = error as? Error {
-      AssignmentHelper.sharedInstance.showAlert(title: StringIdentifiers.messageHeading, message: err.localizedDescription)
+      self.showAlert?(err.localizedDescription)
+    } else if let err = error as? String {
+       self.showAlert?(err)
     }
   }
   
   func saveDataToCache (data: [ListObject], keyString: String) {
    StorageHelper.sharedInstance.saveDataToCache(data: data, keyString: keyString)
-  }
-  
-  func isDataEmpty () -> Bool {
-    if self.dataModelArray.count == 0 {
-      return true
-    }
-    return false
   }
   
   func getDataFromCache(keyString: String) {
@@ -86,8 +82,8 @@ class ListViewModel: NSObject {
       return
     }
     // use the cached version
-    self.dataModelArray.removeAll()
-    self.dataModelArray.append(contentsOf: cachedData)
+    self.deliveries.removeAll()
+    self.deliveries.append(contentsOf: cachedData)
   }
   
   func deleteDataFromCache(keyString: String) {
@@ -95,24 +91,34 @@ class ListViewModel: NSObject {
   }
   
   func refreshData () {
+    if !self.isNetworkAvailable() {
+      return
+    }
     self.shouldRefresh = true
     self.getDataForList()
   }
   
+  func isNetworkAvailable() -> Bool {
+    if !AssignmentHelper.isConnectedToInternet() {
+      self.dataLoadingError?()
+      self.showAlert?(LocalizedKeys.noInternet)
+      return false
+    }
+    return true
+  }
+  
   func getModelForIndex(index: Int) -> ListObject {
-    return self.dataModelArray[index]
+    return self.deliveries[index]
   }
   
   func getViewModelForIndex(index: Int) -> DetailViewModel {
-    let object = self.dataModelArray[index]
-    let VMObject = DetailViewModel.init(obj: object)
-    return VMObject
+    let deliveryObject = self.deliveries[index]
+    let deliveryDetailViewModel = DetailViewModel.init(delivery: deliveryObject)
+    return deliveryDetailViewModel
   }
   
-  func isLastCellOfTableView(tableView: UITableView, indexPath: IndexPath) -> Bool {
-    let lastSectionIndex = tableView.numberOfSections - 1
-    let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-    if  indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+  func isAtBottomOfScrollView(scrollView: UIScrollView) -> Bool {
+     if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
       return true
     }
     return false

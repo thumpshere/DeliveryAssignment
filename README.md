@@ -9,6 +9,8 @@ To run the project :
 - Run the "pod install" command.
 - Open xcworkspace 
 
+
+
 # Prerequisites
 Xcode : 10.2
 
@@ -18,6 +20,9 @@ Xcode : 10.2
 - ViewModel: Stands between view and model . All business logic are handled in viewModel. It receives the event form view and interacts with the model. ViewModel execute the logic to update the model based on the event.
 - View: View and ViewControllers comes under this layer. This layer receives user interaction and send the events to ViewModel layer. It also observe the updation in viewModel and update the UI accordingly. 
 
+
+
+![Untitled Diagram](https://user-images.githubusercontent.com/10941262/61352480-1784a400-a88b-11e9-8520-2c5cdf7a27fe.jpg)
 
 
 # Supported OS version

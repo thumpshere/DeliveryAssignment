@@ -9,10 +9,10 @@
 import UIKit
 import PKHUD
 import Crashlytics
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
   
   let viewModel = ListViewModel()
-  var listTable = UITableView()
+  var deliveriesTable = UITableView()
   var refreshControl = UIRefreshControl()
   var noDataLabel = UILabel()
   
@@ -28,7 +28,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     self.navigationController?.isNavigationBarHidden = false
     self.view.backgroundColor = .white
-    self.title = StringIdentifiers.deliveryListTitle
+    self.title = LocalizedKeys.deliveryListTitle
     PKHUD.sharedHUD.contentView = PKHUDProgressView()
     self.configureTableView()
     self.viewModel.dataStoreKey = Constants.cachedObjectKey
@@ -38,7 +38,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   func setConstraintsOnTableView() {
     let viewsDict = [
-      "table": listTable
+      "table": deliveriesTable
     ]
     self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[table]-0-|", options: [], metrics: nil, views: viewsDict as [String: Any]))
     self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[table]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: viewsDict as [String: Any]))
@@ -55,30 +55,31 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
   func configureTableView() {
     noDataLabel.textColor = .red
     self.noDataLabel.textAlignment = .center
-    self.noDataLabel.text = "No Data Found"
+    self.noDataLabel.text = LocalizedKeys.noDataLabelText
     self.noDataLabel.isHidden = true
-    self.listTable.backgroundView = noDataLabel
-    listTable.dataSource = self
-    listTable.delegate = self
-    self.listTable.rowHeight = UITableView.automaticDimension
-    self.listTable.estimatedRowHeight = 80
-    self.listTable.separatorStyle = .none
-    self.listTable.register(DeliveryTableViewCell.self, forCellReuseIdentifier: CellIdentifiers.deliveryListCell)
-    refreshControl.attributedTitle = NSAttributedString(string: StringIdentifiers.refreshDataMessage)
+    self.deliveriesTable.backgroundView = noDataLabel
+    deliveriesTable.dataSource = self
+    deliveriesTable.delegate = self
+    self.deliveriesTable.rowHeight = UITableView.automaticDimension
+    self.deliveriesTable.estimatedRowHeight = 80
+    self.deliveriesTable.separatorStyle = .none
+    self.deliveriesTable.register(DeliveryTableViewCell.self, forCellReuseIdentifier: CellIdentifiers.deliveryListCell)
+    refreshControl.attributedTitle = NSAttributedString(string: LocalizedKeys.refreshDataMessage)
     refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
-    listTable.addSubview(refreshControl)
-    self.listTable.translatesAutoresizingMaskIntoConstraints = false
-    self.view.addSubview(self.listTable)
+    deliveriesTable.refreshControl = refreshControl
+    self.deliveriesTable.translatesAutoresizingMaskIntoConstraints = false
+    self.view.addSubview(self.deliveriesTable)
     self.setConstraintsOnTableView()
   }
   
   // MARK: TABLEVIEW DATASOURCE FUNCTIONS
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.viewModel.dataModelArray.count
+    return self.viewModel.deliveries.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let listCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.deliveryListCell) as! DeliveryTableViewCell
+    listCell.selectionStyle = .none
     let modelObject = self.viewModel.getModelForIndex(index: indexPath.row)
     listCell.setData(model: modelObject)
     return listCell
@@ -96,11 +97,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     self.navigationController?.pushViewController(detailVC, animated: true)
   }
   
-  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    if  self.viewModel.isLastCellOfTableView(tableView: tableView, indexPath: indexPath) {
-      self.listTable.tableFooterView = self.getSpinnerViewForTable()
-      self.viewModel.loadMoreDataForTable(table: listTable)
-      self.listTable.tableFooterView?.isHidden = false
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    if self.viewModel.isAtBottomOfScrollView(scrollView: scrollView) {
+      //reach bottom
+      self.deliveriesTable.tableFooterView = self.getSpinnerViewForTable()
+      self.viewModel.loadMoreDataForTable(table: deliveriesTable)
+      self.deliveriesTable.tableFooterView?.isHidden = false
+      print("scrolled at bottom")
     }
   }
   
@@ -112,14 +115,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
   func handleCallBacksFromViewModel() {
     
     self.viewModel.dataLoadingSuccess = {[weak self] () -> Void in
-      self?.refreshControl.endRefreshing()
+      self?.stopAllActivitiesInCaseOfFailure()
       self?.reloadTable()
-      PKHUD.sharedHUD.hide()
     }
     
     self.viewModel.dataLoadingError = { [weak self] () -> Void in
-      self?.refreshControl.endRefreshing()
-      PKHUD.sharedHUD.hide()
+      self?.stopAllActivitiesInCaseOfFailure()
     }
     
     self.viewModel.emptyData = { [weak self] () -> Void in
@@ -130,11 +131,25 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
       PKHUD.sharedHUD.show()
     }
     
-  }
-  func reloadTable() {
-    DispatchQueue.main.async {
-      self.listTable.reloadData()
+    self.viewModel.showAlert = { (message) -> Void in
+      AssignmentHelper.showAlert(title: LocalizedKeys.messageHeading, message: message, success: { () in
+       self.deliveriesTable.reloadData()
+      })
     }
   }
   
+  func stopAllActivitiesInCaseOfFailure () {
+    DispatchQueue.main.async {
+      self.refreshControl.endRefreshing()
+      self.deliveriesTable.tableFooterView?.isHidden = true
+      PKHUD.sharedHUD.hide()
+    }
+  }
+  
+  func reloadTable() {
+    DispatchQueue.main.async {
+      self.deliveriesTable.reloadData()
+    }
+  }
+
 }

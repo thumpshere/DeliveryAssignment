@@ -56,7 +56,7 @@ class DeliveryTableViewCell: UITableViewCell {
   }
     
   func setData(model: ListObject) {
-    self.message.text = model.descriptionField
+    self.message.text = (model.descriptionField ?? "") + LocalizedKeys.appendedStringAt + (model.location?.address ?? "")
     self.img.sd_imageIndicator = SDWebImageActivityIndicator.gray
     if let imgURL = model.imageUrl {
       self.img.sd_setImage(with: URL(string: imgURL), placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.continueInBackground, context: nil)

@@ -34,7 +34,7 @@ class StorageHelper: NSObject {
     do {
       try storage?.removeObject(forKey: keyString)
     } catch {
-      AssignmentHelper.sharedInstance.showAlert(title: StringIdentifiers.errorHeading, message: StringIdentifiers.errorRefreshingData)
+      
     }
   }
   

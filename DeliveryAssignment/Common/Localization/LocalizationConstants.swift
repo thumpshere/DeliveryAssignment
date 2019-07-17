@@ -2,13 +2,13 @@
 //  LocalizationConstants.swift
 //  DeliveryAssignment
 //
-//  Created by Arpit Tripathi on 12/07/19.
+//  Created by Arpit Tripathi on 16/07/19.
 //  Copyright © 2019 Arpit Tripathi. All rights reserved.
 //
 
 import Foundation
 
-struct StringIdentifiers {
+struct LocalizedKeys {
   static let noInternet = "NOInternet".localized
   static let errorHeading = "Attention".localized
   static let errorRefreshingData = "errorRefreshData".localized
@@ -17,5 +17,6 @@ struct StringIdentifiers {
   static let refreshDataMessage = "refreshControl.text".localized
   static let deliveryDetailTitle = "DeliveryDetailsTitle".localized
   static let alertButtonTitleOK = "OK".localized
-  
+  static let noDataLabelText = "emptyData".localized
+  static let appendedStringAt = "at".localized
 }

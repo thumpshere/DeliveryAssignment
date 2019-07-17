@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import Alamofire
 
 class AssignmentHelper: NSObject {
-  static let sharedInstance = AssignmentHelper()
   
-  override init() {}
-
-  func showAlert (title: String, message: String) {
+  class func showAlert (title: String, message: String, success successBlock: @escaping (() -> Void)) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
     // add an action (button)
-    alert.addAction(UIAlertAction(title: StringIdentifiers.alertButtonTitleOK, style: UIAlertAction.Style.default, handler: nil))
+    alert.addAction(UIAlertAction(title: LocalizedKeys.alertButtonTitleOK, style: UIAlertAction.Style.default, handler: nil))
     guard let window = UIApplication.shared.keyWindow else { return }
     // show the alert
-    window.rootViewController?.present(alert, animated: true, completion: nil)
+    window.rootViewController?.present(alert, animated: true, completion: {
+      successBlock()
+    })
   }
 
+class func isConnectedToInternet() -> Bool {
+    return NetworkReachabilityManager()!.isReachable
+  }
+  
 }

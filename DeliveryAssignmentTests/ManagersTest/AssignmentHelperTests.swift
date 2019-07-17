@@ -1,20 +1,30 @@
 //
-//  DeliveryAssignmentTests.swift
+//  AssignmentHelperTests.swift
 //  DeliveryAssignmentTests
 //
-//  Created by Arpit Tripathi on 11/07/19.
+//  Created by Arpit Tripathi on 16/07/19.
 //  Copyright © 2019 Arpit Tripathi. All rights reserved.
 //
 
 import XCTest
 @testable import DeliveryAssignment
 
-class DeliveryAssignmentTests: XCTestCase {
+class AssignmentHelperTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
+  func testAlert () {
+    AssignmentHelper.showAlert(title: "test", message: "message") {
+      XCTAssert(true)
+    }
+  }
+  
+  func testLocalisedExtension () {
+    XCTAssertTrue("OK".localized == "OK")
+  }
+  
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }

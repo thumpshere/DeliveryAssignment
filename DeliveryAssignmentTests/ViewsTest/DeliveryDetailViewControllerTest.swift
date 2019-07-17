@@ -15,13 +15,12 @@ class DeliveryDetailViewControllerTest: XCTestCase {
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
       let deliveryItem = getDeliveryListObject()[0]
-      let deliveryDetailViewModel = DetailViewModel.init(obj: deliveryItem)
+      let deliveryDetailViewModel = DetailViewModel.init(delivery: deliveryItem)
       deliveryDetailVC = DetailViewController()
       deliveryDetailVC.viewModel = deliveryDetailViewModel
-      deliveryDetailVC.viewDidLoad()
     }
 
-  func getDeliveryListObject() -> [ListObject] {
+private func getDeliveryListObject() -> [ListObject] {
     
     var deliveryItem = NSMutableDictionary()
     var location = NSMutableDictionary()
@@ -43,16 +42,30 @@ class DeliveryDetailViewControllerTest: XCTestCase {
   }
   
   func testRequiredElementShouldNotNil() {
-    XCTAssertNotNil(deliveryDetailVC.title)
     XCTAssertNotNil(deliveryDetailVC.viewModel)
-    XCTAssertNotNil(deliveryDetailVC.viewModel?.dataObject)
-    XCTAssertNotNil(deliveryDetailVC.mapView)
+  }
+  
+  func testIfDataIsPresent () {
+    XCTAssertNotNil(deliveryDetailVC.viewModel?.deliveryDataObject)
+  }
+  
+  func testMapIsNotNil () {
+     XCTAssertNotNil(deliveryDetailVC.mapView)
   }
   
   func testMapViewDelegate () {
     XCTAssertTrue(deliveryDetailVC.conforms(to: MKMapViewDelegate.self))
   }
   
+  func testDetailViewIsVisible () {
+    deliveryDetailVC.createUI()
+    XCTAssert(deliveryDetailVC.deliveryDetailView.isDescendant(of: deliveryDetailVC.view))
+  }
+  
+  func testDetailViewIsNotNil () {
+    XCTAssertNotNil(deliveryDetailVC.deliveryDetailView)
+  }
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }

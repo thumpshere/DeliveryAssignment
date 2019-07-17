@@ -15,12 +15,11 @@ class ListViewControllerTest: XCTestCase {
     // Put setup code here. This method is called before the invocation of each test method in the class.
     let navController = AppDelegate.delegate().window?.rootViewController as! UINavigationController
     deliveryListVC = navController.viewControllers[0] as! ListViewController
-    deliveryListVC.viewDidLoad()
   }
 
   func testRequiredElementShouldNotNil() {
     XCTAssertNotNil(deliveryListVC.title)
-    XCTAssertNotNil(deliveryListVC.listTable)
+    XCTAssertNotNil(deliveryListVC.deliveriesTable)
     XCTAssertNotNil(deliveryListVC.refreshControl)
     XCTAssertNotNil(deliveryListVC.noDataLabel)
   }
@@ -31,7 +30,7 @@ class ListViewControllerTest: XCTestCase {
   }
   
   func testCellConfiguration() {
-    let tableView = deliveryListVC.listTable
+    let tableView = deliveryListVC.deliveriesTable
     let cell = deliveryListVC.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
     XCTAssertNotNil(cell)
   }

@@ -11,15 +11,15 @@ import MapKit
 import SDWebImage
 
 class DetailViewModel: NSObject {
- var dataObject: ListObject?
+ var deliveryDataObject: ListObject?
    let regionRadius: CLLocationDistance = 1000
   
-  init(obj: ListObject) {
-    self.dataObject = obj
+  init(delivery: ListObject) {
+    self.deliveryDataObject = delivery
   }
   
   func configureMapView(mapView: MKMapView) -> MKMapView {
-    let initialLocation = CLLocationCoordinate2D(latitude: dataObject?.location?.lat ?? 0, longitude: dataObject?.location?.lng ?? 0)
+    let initialLocation = CLLocationCoordinate2D(latitude: deliveryDataObject?.location?.lat ?? 0, longitude: deliveryDataObject?.location?.lng ?? 0)
     return self.centerMapOnLocation(location: initialLocation, mapView: mapView)
   }
   
@@ -28,8 +28,8 @@ class DetailViewModel: NSObject {
                                               latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
     mapView.setRegion(coordinateRegion, animated: true)
     let location = MKPointAnnotation()
-    location.title = dataObject?.location?.address
-        location.coordinate = CLLocationCoordinate2D(latitude: dataObject?.location?.lat ?? 0, longitude: dataObject?.location?.lng ?? 0)
+    location.title = deliveryDataObject?.location?.address
+        location.coordinate = CLLocationCoordinate2D(latitude: deliveryDataObject?.location?.lat ?? 0, longitude: deliveryDataObject?.location?.lng ?? 0)
     mapView.addAnnotation(location)
     return mapView
   }
