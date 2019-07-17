@@ -6,7 +6,7 @@ A prototype of an application which displays deliveries of goods and their deliv
 
 To install CocoaPods:-
 - Open terminal and type: "sudo gem install cocoapods"
--  After installation, there will be a lot of messages, read them and if no error found, it means cocoapods installation is done. Next, you need to setup the cocoapods master repo. Type in terminal:
+-  After installation, there will be a lot of messages, read them and if no error found, it means cocoapods installation is done.
 
 To run the project :
 - Open podfile from project directory. 
