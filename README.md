@@ -80,7 +80,7 @@ Swift 5.0
 - UITesting
 
 # Screenshots
-<img width="413" alt="Simulator Screen Shot - iPhone Xʀ - 2019-07-12 at 14 44" src="https://user-images.githubusercontent.com/10941262/61122551-b3936180-a4bf-11e9-8a0a-c66b9869569a.png">"
+<img width="413" alt="Simulator Screen Shot - iPhone Xʀ - 2019-07-12 at 14 44" src="https://user-images.githubusercontent.com/10941262/61353890-7ac40580-a88e-11e9-9b10-6818f100298a.png">"
 
-<img width="413" alt="Simulator Screen Shot - iPhone Xʀ - 2019-07-12 at 14 44 45" src="https://user-images.githubusercontent.com/10941262/61122558-b8f0ac00-a4bf-11e9-9561-cc6b10cb1084.png">"
+<img width="413" alt="Simulator Screen Shot - iPhone Xʀ - 2019-07-12 at 14 44 45" src="https://user-images.githubusercontent.com/10941262/61353895-7ef02300-a88e-11e9-8f83-6184773a5f6d.png">"
 
