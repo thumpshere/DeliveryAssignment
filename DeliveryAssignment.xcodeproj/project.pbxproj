@@ -11,14 +11,14 @@
 		255D0CC656F4700B38C21B3E /* Pods_DeliveryAssignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB815DD97C20AAAA6AB081E /* Pods_DeliveryAssignment.framework */; };
 		4937A6D722D74C6C0040B4A1 /* DeliveryAssignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6D622D74C6C0040B4A1 /* DeliveryAssignmentUITests.swift */; };
 		4937A70022D74CD90040B4A1 /* DeliveryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6EB22D74CD90040B4A1 /* DeliveryTableViewCell.swift */; };
-		4937A70122D74CD90040B4A1 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6EC22D74CD90040B4A1 /* ListViewController.swift */; };
-		4937A70222D74CD90040B4A1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6ED22D74CD90040B4A1 /* DetailViewController.swift */; };
+		4937A70122D74CD90040B4A1 /* DeliveryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6EC22D74CD90040B4A1 /* DeliveryListViewController.swift */; };
+		4937A70222D74CD90040B4A1 /* DeliveryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6ED22D74CD90040B4A1 /* DeliveryDetailViewController.swift */; };
 		4937A70722D74CD90040B4A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4937A6F422D74CD90040B4A1 /* GoogleService-Info.plist */; };
 		4937A70822D74CD90040B4A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6F522D74CD90040B4A1 /* AppDelegate.swift */; };
-		4937A70A22D74CD90040B4A1 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6F822D74CD90040B4A1 /* DetailViewModel.swift */; };
-		4937A70B22D74CD90040B4A1 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6F922D74CD90040B4A1 /* ListViewModel.swift */; };
-		4937A70C22D74CD90040B4A1 /* ListObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6FB22D74CD90040B4A1 /* ListObject.swift */; };
-		4937A70D22D74CD90040B4A1 /* ListLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6FC22D74CD90040B4A1 /* ListLocation.swift */; };
+		4937A70A22D74CD90040B4A1 /* DeliveryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6F822D74CD90040B4A1 /* DeliveryDetailViewModel.swift */; };
+		4937A70B22D74CD90040B4A1 /* DeliveryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6F922D74CD90040B4A1 /* DeliveryListViewModel.swift */; };
+		4937A70C22D74CD90040B4A1 /* DeliveryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6FB22D74CD90040B4A1 /* DeliveryObject.swift */; };
+		4937A70D22D74CD90040B4A1 /* DeliveryLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A6FC22D74CD90040B4A1 /* DeliveryLocation.swift */; };
 		4937A71522D74D870040B4A1 /* InvalidDelivery.json in Resources */ = {isa = PBXBuildFile; fileRef = 4937A70E22D74D860040B4A1 /* InvalidDelivery.json */; };
 		4937A71622D74D870040B4A1 /* APIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4937A70F22D74D860040B4A1 /* APIManagerTests.swift */; };
 		4937A71722D74D870040B4A1 /* DummyApiResponse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4937A71022D74D870040B4A1 /* DummyApiResponse.plist */; };
@@ -71,15 +71,15 @@
 		4937A6D622D74C6C0040B4A1 /* DeliveryAssignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryAssignmentUITests.swift; sourceTree = "<group>"; };
 		4937A6D822D74C6C0040B4A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4937A6EB22D74CD90040B4A1 /* DeliveryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryTableViewCell.swift; sourceTree = "<group>"; };
-		4937A6EC22D74CD90040B4A1 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		4937A6ED22D74CD90040B4A1 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4937A6EC22D74CD90040B4A1 /* DeliveryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryListViewController.swift; sourceTree = "<group>"; };
+		4937A6ED22D74CD90040B4A1 /* DeliveryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryDetailViewController.swift; sourceTree = "<group>"; };
 		4937A6F422D74CD90040B4A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4937A6F522D74CD90040B4A1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4937A6F622D74CD90040B4A1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4937A6F822D74CD90040B4A1 /* DetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
-		4937A6F922D74CD90040B4A1 /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		4937A6FB22D74CD90040B4A1 /* ListObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListObject.swift; sourceTree = "<group>"; };
-		4937A6FC22D74CD90040B4A1 /* ListLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListLocation.swift; sourceTree = "<group>"; };
+		4937A6F822D74CD90040B4A1 /* DeliveryDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryDetailViewModel.swift; sourceTree = "<group>"; };
+		4937A6F922D74CD90040B4A1 /* DeliveryListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryListViewModel.swift; sourceTree = "<group>"; };
+		4937A6FB22D74CD90040B4A1 /* DeliveryObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryObject.swift; sourceTree = "<group>"; };
+		4937A6FC22D74CD90040B4A1 /* DeliveryLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryLocation.swift; sourceTree = "<group>"; };
 		4937A70E22D74D860040B4A1 /* InvalidDelivery.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidDelivery.json; sourceTree = "<group>"; };
 		4937A70F22D74D860040B4A1 /* APIManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManagerTests.swift; sourceTree = "<group>"; };
 		4937A71022D74D870040B4A1 /* DummyApiResponse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DummyApiResponse.plist; sourceTree = "<group>"; };
@@ -196,8 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				4937A6EB22D74CD90040B4A1 /* DeliveryTableViewCell.swift */,
-				4937A6EC22D74CD90040B4A1 /* ListViewController.swift */,
-				4937A6ED22D74CD90040B4A1 /* DetailViewController.swift */,
+				4937A6EC22D74CD90040B4A1 /* DeliveryListViewController.swift */,
+				4937A6ED22D74CD90040B4A1 /* DeliveryDetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,8 +215,8 @@
 		4937A6F722D74CD90040B4A1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				4937A6F822D74CD90040B4A1 /* DetailViewModel.swift */,
-				4937A6F922D74CD90040B4A1 /* ListViewModel.swift */,
+				4937A6F822D74CD90040B4A1 /* DeliveryDetailViewModel.swift */,
+				4937A6F922D74CD90040B4A1 /* DeliveryListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -224,8 +224,8 @@
 		4937A6FA22D74CD90040B4A1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4937A6FB22D74CD90040B4A1 /* ListObject.swift */,
-				4937A6FC22D74CD90040B4A1 /* ListLocation.swift */,
+				4937A6FB22D74CD90040B4A1 /* DeliveryObject.swift */,
+				4937A6FC22D74CD90040B4A1 /* DeliveryLocation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -610,19 +610,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				49B6902022DDB199009DBEB1 /* AssignmentHelper.swift in Sources */,
-				4937A70B22D74CD90040B4A1 /* ListViewModel.swift in Sources */,
+				4937A70B22D74CD90040B4A1 /* DeliveryListViewModel.swift in Sources */,
 				4937A70822D74CD90040B4A1 /* AppDelegate.swift in Sources */,
-				4937A70222D74CD90040B4A1 /* DetailViewController.swift in Sources */,
+				4937A70222D74CD90040B4A1 /* DeliveryDetailViewController.swift in Sources */,
 				49B6902122DDB199009DBEB1 /* ApiManager.swift in Sources */,
-				4937A70122D74CD90040B4A1 /* ListViewController.swift in Sources */,
+				4937A70122D74CD90040B4A1 /* DeliveryListViewController.swift in Sources */,
 				49B6901E22DDB199009DBEB1 /* AssignmentConstants.swift in Sources */,
-				4937A70A22D74CD90040B4A1 /* DetailViewModel.swift in Sources */,
+				4937A70A22D74CD90040B4A1 /* DeliveryDetailViewModel.swift in Sources */,
 				49B6902322DDB199009DBEB1 /* LocalizationConstants.swift in Sources */,
 				49B6902222DDB199009DBEB1 /* StorageHelper.swift in Sources */,
 				4937A70022D74CD90040B4A1 /* DeliveryTableViewCell.swift in Sources */,
-				4937A70C22D74CD90040B4A1 /* ListObject.swift in Sources */,
+				4937A70C22D74CD90040B4A1 /* DeliveryObject.swift in Sources */,
 				49B6901F22DDB199009DBEB1 /* String+Extension.swift in Sources */,
-				4937A70D22D74CD90040B4A1 /* ListLocation.swift in Sources */,
+				4937A70D22D74CD90040B4A1 /* DeliveryLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

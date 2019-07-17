@@ -10,11 +10,11 @@ import UIKit
 import MapKit
 import SDWebImage
 
-class DetailViewModel: NSObject {
- var deliveryDataObject: ListObject?
+class DeliveryDetailViewModel: NSObject {
+ var deliveryDataObject: DeliveryObject?
    let regionRadius: CLLocationDistance = 1000
   
-  init(delivery: ListObject) {
+  init(delivery: DeliveryObject) {
     self.deliveryDataObject = delivery
   }
   

@@ -14,15 +14,15 @@ class StorageHelper: NSObject {
   let storage = try? Storage(
     diskConfig: DiskConfig(name: Constants.dataStoreId),
     memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10),
-    transformer: TransformerFactory.forCodable(ofType: [ListObject].self)
+    transformer: TransformerFactory.forCodable(ofType: [DeliveryObject].self)
   )
 
-  func getDataFromCache(keyString: String) -> [ListObject] {
-      let cachedData = (try? storage?.object(forKey: keyString)) ?? [ListObject]()
+  func getDataFromCache(keyString: String) -> [DeliveryObject] {
+      let cachedData = (try? storage?.object(forKey: keyString)) ?? [DeliveryObject]()
       return cachedData
   }
   
-  func saveDataToCache (data: [ListObject], keyString: String) {
+  func saveDataToCache (data: [DeliveryObject], keyString: String) {
     do {
       try storage?.setObject(data, forKey: keyString)
     } catch {

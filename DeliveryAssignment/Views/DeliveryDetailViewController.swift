@@ -9,12 +9,13 @@
 import UIKit
 import MapKit
 import SDWebImage
-class DetailViewController: UIViewController, MKMapViewDelegate {
+
+class DeliveryDetailViewController: UIViewController, MKMapViewDelegate {
   var mapView = MKMapView()
   let scrollView = UIScrollView()
   let scrollContentView = UIView()
   let deliveryDetailView = UIView()
-  var viewModel: DetailViewModel?
+  var viewModel: DeliveryDetailViewModel?
   
   override func viewDidLoad() {
     super.viewDidLoad()

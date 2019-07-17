@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct ListObject: Codable {
+struct DeliveryObject: Codable {
     
     let descriptionField: String?
     let itemId: Int?
     let imageUrl: String?
-    let location: ListLocation?
+    let location: DeliveryLocation?
     
     enum CodingKeys: String, CodingKey {
         case descriptionField = "description"
@@ -27,7 +27,7 @@ struct ListObject: Codable {
         descriptionField = try values.decodeIfPresent(String.self, forKey: .descriptionField)
         itemId = try values.decodeIfPresent(Int.self, forKey: .itemId)
         imageUrl = try values.decodeIfPresent(String.self, forKey: .imageUrl)
-       location = try values.decodeIfPresent(ListLocation.self, forKey: .location)
+       location = try values.decodeIfPresent(DeliveryLocation.self, forKey: .location)
     }
     
 }

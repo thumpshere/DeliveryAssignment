@@ -9,9 +9,9 @@
 import UIKit
 import PKHUD
 import Crashlytics
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class DeliveryListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
   
-  let viewModel = ListViewModel()
+  let viewModel = DeliveryListViewModel()
   var deliveriesTable = UITableView()
   var refreshControl = UIRefreshControl()
   var noDataLabel = UILabel()
@@ -92,12 +92,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
   // MARK: TABLEVIEW DELEGATE FUNCTIONS
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let detailVC = DetailViewController()
+    let detailVC = DeliveryDetailViewController()
     detailVC.viewModel = self.viewModel.getViewModelForIndex(index: indexPath.row)
     self.navigationController?.pushViewController(detailVC, animated: true)
   }
   
-  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {    
     if self.viewModel.isAtBottomOfScrollView(scrollView: scrollView) {
       //reach bottom
       self.deliveriesTable.tableFooterView = self.getSpinnerViewForTable()
@@ -115,12 +115,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
   func handleCallBacksFromViewModel() {
     
     self.viewModel.dataLoadingSuccess = {[weak self] () -> Void in
-      self?.stopAllActivitiesInCaseOfFailure()
+      self?.noDataLabel.isHidden = true
+      self?.stopAllActivities()
       self?.reloadTable()
     }
     
     self.viewModel.dataLoadingError = { [weak self] () -> Void in
-      self?.stopAllActivitiesInCaseOfFailure()
+      self?.stopAllActivities()
     }
     
     self.viewModel.emptyData = { [weak self] () -> Void in
@@ -138,7 +139,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
   }
   
-  func stopAllActivitiesInCaseOfFailure () {
+  func stopAllActivities() {
     DispatchQueue.main.async {
       self.refreshControl.endRefreshing()
       self.deliveriesTable.tableFooterView?.isHidden = true

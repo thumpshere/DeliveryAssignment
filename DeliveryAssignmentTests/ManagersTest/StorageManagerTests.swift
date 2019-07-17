@@ -10,7 +10,7 @@ import XCTest
 @testable import DeliveryAssignment
 
 class StorageManagerTests: XCTestCase {
-var listVM = ListViewModel()
+var listVM = DeliveryListViewModel()
   let dataStoreKey = "dummyDataForCache"
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -19,7 +19,7 @@ var listVM = ListViewModel()
 
   func testIfDataIsWrittenAndDeletedFromCache() {
     if  let ary = self.getDataFromPlist() {
-      let listVM = ListViewModel()
+      let listVM = DeliveryListViewModel()
       listVM.saveDataToCache(data: ary, keyString: dataStoreKey)
       listVM.getDataFromCache(keyString: dataStoreKey)
       XCTAssertTrue(listVM.deliveries.count>0)
@@ -35,7 +35,7 @@ var listVM = ListViewModel()
     }
   }
   
- private func getDataFromPlist () -> [ListObject]? {
+ private func getDataFromPlist () -> [DeliveryObject]? {
     if let path = Bundle.main.path(forResource: "DummyApiResponse", ofType: "plist") {
       if let ary = NSArray(contentsOfFile: path) {
         return self.createParsedArray(array: ary)
@@ -44,11 +44,11 @@ var listVM = ListViewModel()
     return nil
   }
   
-private func createParsedArray(array: NSArray) -> [ListObject]? {
+private func createParsedArray(array: NSArray) -> [DeliveryObject]? {
     do {
       let decoder = JSONDecoder()
       let data = try? NSKeyedArchiver.archivedData(withRootObject: array, requiringSecureCoding: false)
-      let parsedArray = try decoder.decode([ListObject].self, from: data!)
+      let parsedArray = try decoder.decode([DeliveryObject].self, from: data!)
       return parsedArray
       
     } catch let err {

@@ -10,12 +10,12 @@ import UIKit
 import Alamofire
 
 protocol APIManagerProtocol {
-   func fetchDeliveries (offset: Int, limit: Int, success successBlock: @escaping (([ListObject]) -> Void), failure failureBlock: @escaping ((AnyObject) -> Void))
+   func fetchDeliveries (offset: Int, limit: Int, success successBlock: @escaping (([DeliveryObject]) -> Void), failure failureBlock: @escaping ((AnyObject) -> Void))
 }
 
 class ApiManager: APIManagerProtocol {
   
-  func fetchDeliveries (offset: Int, limit: Int, success successBlock: @escaping (([ListObject]) -> Void), failure failureBlock: @escaping ((AnyObject) -> Void)) {
+  func fetchDeliveries (offset: Int, limit: Int, success successBlock: @escaping (([DeliveryObject]) -> Void), failure failureBlock: @escaping ((AnyObject) -> Void)) {
     if !AssignmentHelper.isConnectedToInternet() {
       return failureBlock(LocalizedKeys.noInternet as AnyObject)
     }
@@ -25,7 +25,7 @@ class ApiManager: APIManagerProtocol {
       // response serialization result
       if let data = response.data {
         do {
-          let dataArray = try decoder.decode([ListObject].self, from: data)
+          let dataArray = try decoder.decode([DeliveryObject].self, from: data)
           successBlock(dataArray)
         } catch let err {
           print(err)

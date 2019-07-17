@@ -8,7 +8,7 @@
 
 import UIKit
 import Cache
-class ListViewModel: NSObject {
+class DeliveryListViewModel: NSObject {
   
   var apiRequestManager: APIManagerProtocol = ApiManager()
   var refresh:(() -> Void)?
@@ -19,7 +19,7 @@ class ListViewModel: NSObject {
   var showAlert:((_ message: String) -> Void)?
   var limit: Int=20
   var offset: Int=0
-  var deliveries = [ListObject]()
+  var deliveries = [DeliveryObject]()
   var shouldRefresh = false
   var willLoadFirstTime = false
   var isDataLoading = false
@@ -45,7 +45,7 @@ class ListViewModel: NSObject {
     })
   }
   
-  func processApiData(modelDataArray: [ListObject]) {
+  func processApiData(modelDataArray: [DeliveryObject]) {
     print("response sucesss")
     if self.shouldRefresh {
       self.deliveries.removeAll()
@@ -70,7 +70,7 @@ class ListViewModel: NSObject {
     }
   }
   
-  func saveDataToCache (data: [ListObject], keyString: String) {
+  func saveDataToCache (data: [DeliveryObject], keyString: String) {
    StorageHelper.sharedInstance.saveDataToCache(data: data, keyString: keyString)
   }
   
@@ -90,6 +90,13 @@ class ListViewModel: NSObject {
     StorageHelper.sharedInstance.deleteDataFromCache(keyString: keyString)
   }
   
+  func checkIfDataISEmpty() {
+    if self.deliveries.isEmpty {
+      self.emptyData?()
+      return
+    }
+  }
+  
   func refreshData () {
     if !self.isNetworkAvailable() {
       return
@@ -100,6 +107,7 @@ class ListViewModel: NSObject {
   
   func isNetworkAvailable() -> Bool {
     if !AssignmentHelper.isConnectedToInternet() {
+      self.checkIfDataISEmpty()
       self.dataLoadingError?()
       self.showAlert?(LocalizedKeys.noInternet)
       return false
@@ -107,13 +115,13 @@ class ListViewModel: NSObject {
     return true
   }
   
-  func getModelForIndex(index: Int) -> ListObject {
+  func getModelForIndex(index: Int) -> DeliveryObject {
     return self.deliveries[index]
   }
   
-  func getViewModelForIndex(index: Int) -> DetailViewModel {
+  func getViewModelForIndex(index: Int) -> DeliveryDetailViewModel {
     let deliveryObject = self.deliveries[index]
-    let deliveryDetailViewModel = DetailViewModel.init(delivery: deliveryObject)
+    let deliveryDetailViewModel = DeliveryDetailViewModel.init(delivery: deliveryObject)
     return deliveryDetailViewModel
   }
   

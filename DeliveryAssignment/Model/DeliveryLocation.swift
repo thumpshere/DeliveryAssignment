@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ListLocation: Codable {
+struct DeliveryLocation: Codable {
     
     let address: String?
     let lat: Double?

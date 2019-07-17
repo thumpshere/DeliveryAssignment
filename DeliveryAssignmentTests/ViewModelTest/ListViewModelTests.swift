@@ -12,8 +12,8 @@ import Cache
 
 class ListViewModelTests: XCTestCase {
   
-  var dataArray = [ListObject]()
-  var listViewModel = ListViewModel()
+  var dataArray = [DeliveryObject]()
+  var listViewModel = DeliveryListViewModel()
   var mockAPIRequestManager: MockAPIManager!
   
   override func setUp() {
@@ -36,7 +36,7 @@ class ListViewModelTests: XCTestCase {
     getViewModelForDeliveryDetail()
   }  
   
-  private func getDataFromPlist () -> [ListObject]? {
+  private func getDataFromPlist () -> [DeliveryObject]? {
     if let path = Bundle.main.path(forResource: "DummyApiResponse", ofType: "plist") {
       if let ary = NSArray(contentsOfFile: path) {
         return self.createParsedArray(array: ary)
@@ -45,11 +45,11 @@ class ListViewModelTests: XCTestCase {
     return nil
   }
   
-  private func createParsedArray(array: NSArray) -> [ListObject]? {
+  private func createParsedArray(array: NSArray) -> [DeliveryObject]? {
     do {
       let decoder = JSONDecoder()
       let data = try? NSKeyedArchiver.archivedData(withRootObject: dataArray, requiringSecureCoding: false)
-      let parsedArray = try decoder.decode([ListObject].self, from: data!)
+      let parsedArray = try decoder.decode([DeliveryObject].self, from: data!)
       return parsedArray
       
     } catch let err {
@@ -66,7 +66,7 @@ class ListViewModelTests: XCTestCase {
   
   func getViewModelForDeliveryDetail () {
    let viewModel =  listViewModel.getViewModelForIndex(index: 0)
-    XCTAssert(viewModel.isKind(of: DetailViewModel.self))
+    XCTAssert(viewModel.isKind(of: DeliveryDetailViewModel.self))
   }
   
   func testIfDataIsEmpty() {
@@ -76,12 +76,12 @@ class ListViewModelTests: XCTestCase {
 }
 
 class MockAPIManager: APIManagerProtocol {
-  func fetchDeliveries(offset: Int, limit: Int, success successBlock: @escaping (([ListObject]) -> Void), failure failureBlock: @escaping ((AnyObject) -> Void)) {
+  func fetchDeliveries(offset: Int, limit: Int, success successBlock: @escaping (([DeliveryObject]) -> Void), failure failureBlock: @escaping ((AnyObject) -> Void)) {
     print("Calling mock API")
-    successBlock( parsedArrayWithItem() ?? [ListObject]())
+    successBlock( parsedArrayWithItem() ?? [DeliveryObject]())
   }
   
-  private func parsedArrayWithItem() -> [ListObject]? {
+  private func parsedArrayWithItem() -> [DeliveryObject]? {
     var deliveryItem = NSMutableDictionary()
     var location = NSMutableDictionary()
     location = ["lat": 28.23, "lng": 78.00, "address": "This is dummy address"]
@@ -91,12 +91,12 @@ class MockAPIManager: APIManagerProtocol {
     do {
       let decoder = JSONDecoder()
       let data = try? JSONSerialization.data(withJSONObject: ary, options: [])
-      let parsedArray = try decoder.decode([ListObject].self, from: data!)
+      let parsedArray = try decoder.decode([DeliveryObject].self, from: data!)
       return parsedArray
       
     } catch let err {
       print("Err", err)
-      let arrayEmpty = [ListObject]()
+      let arrayEmpty = [DeliveryObject]()
       return arrayEmpty
     }
   }

@@ -55,7 +55,7 @@ class DeliveryTableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
     
-  func setData(model: ListObject) {
+  func setData(model: DeliveryObject) {
     self.message.text = (model.descriptionField ?? "") + LocalizedKeys.appendedStringAt + (model.location?.address ?? "")
     self.img.sd_imageIndicator = SDWebImageActivityIndicator.gray
     if let imgURL = model.imageUrl {

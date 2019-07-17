@@ -11,16 +11,16 @@ import MapKit
 @testable import DeliveryAssignment
 
 class DeliveryDetailViewControllerTest: XCTestCase {
-  var deliveryDetailVC: DetailViewController!
+  var deliveryDetailVC: DeliveryDetailViewController!
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
       let deliveryItem = getDeliveryListObject()[0]
-      let deliveryDetailViewModel = DetailViewModel.init(delivery: deliveryItem)
-      deliveryDetailVC = DetailViewController()
+      let deliveryDetailViewModel = DeliveryDetailViewModel.init(delivery: deliveryItem)
+      deliveryDetailVC = DeliveryDetailViewController()
       deliveryDetailVC.viewModel = deliveryDetailViewModel
     }
 
-private func getDeliveryListObject() -> [ListObject] {
+private func getDeliveryListObject() -> [DeliveryObject] {
     
     var deliveryItem = NSMutableDictionary()
     var location = NSMutableDictionary()
@@ -31,12 +31,12 @@ private func getDeliveryListObject() -> [ListObject] {
     do {
       let decoder = JSONDecoder()
       let data = try? JSONSerialization.data(withJSONObject: ary, options: [])
-      let parsedArray = try decoder.decode([ListObject].self, from: data!)
+      let parsedArray = try decoder.decode([DeliveryObject].self, from: data!)
       return parsedArray
       
     } catch let err {
       print("Err", err)
-      let arrayEmpty = [ListObject]()
+      let arrayEmpty = [DeliveryObject]()
       return arrayEmpty
     }
   }

@@ -9,12 +9,12 @@
 import XCTest
 @testable import DeliveryAssignment
 class ListViewControllerTest: XCTestCase {
-  var deliveryListVC: ListViewController = ListViewController()
+  var deliveryListVC: DeliveryListViewController = DeliveryListViewController()
   
   override func setUp() {
     // Put setup code here. This method is called before the invocation of each test method in the class.
     let navController = AppDelegate.delegate().window?.rootViewController as! UINavigationController
-    deliveryListVC = navController.viewControllers[0] as! ListViewController
+    deliveryListVC = navController.viewControllers[0] as! DeliveryListViewController
   }
 
   func testRequiredElementShouldNotNil() {

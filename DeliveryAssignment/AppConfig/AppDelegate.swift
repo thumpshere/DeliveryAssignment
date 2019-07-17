@@ -56,7 +56,7 @@ extension AppDelegate {
   private func setUpRootViewController() {
     self.window = UIWindow()
     self.window?.makeKeyAndVisible()
-    let navigationController = UINavigationController.init(rootViewController: ListViewController())
+    let navigationController = UINavigationController.init(rootViewController: DeliveryListViewController())
     self.window?.rootViewController = navigationController
   }
 }
