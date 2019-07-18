@@ -25,8 +25,7 @@ Xcode : 10.2
 - View: View and ViewControllers comes under this layer. This layer receives user interaction and send the events to ViewModel layer. It also observe the updation in viewModel and update the UI accordingly. 
 
 
-![Untitled Diagram](https://user-images.githubusercontent.com/10941262/61352480-1784a400-a88b-11e9-8520-2c5cdf7a27fe.jpg)
-
+<img width="971" alt="Screenshot 2019-07-18 at 4 16 02 PM" src="https://user-images.githubusercontent.com/10941262/61451661-7f181d80-a977-11e9-9943-879de9385058.png">
 
 # Supported OS version
  iOS (10.x, 11.x, 12.x)  
