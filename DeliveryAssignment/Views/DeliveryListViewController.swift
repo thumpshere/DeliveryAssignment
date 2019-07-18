@@ -47,7 +47,7 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
   func getSpinnerViewForTable() -> UIActivityIndicatorView {
     let spinner = UIActivityIndicatorView(style: .gray)
     spinner.startAnimating()
-    spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: ScreenDimensions.screenWidth, height: CGFloat(40))
+    spinner.frame.size.height = CGFloat(TableViewConstants.spinnerSize)
     return spinner
   }
   
@@ -83,12 +83,12 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
     listCell.setData(model: modelObject)
     return listCell
   }
+ 
+  // MARK: TABLEVIEW DELEGATE FUNCTIONS
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
-  
-  // MARK: TABLEVIEW DELEGATE FUNCTIONS
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let detailVC = DeliveryDetailViewController()
@@ -118,20 +118,31 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
     
     self.viewModel.dataLoadingSuccess = {[weak self] () -> Void in
       self?.noDataLabel.isHidden = true
-      self?.stopAllActivities()
       self?.reloadTable()
     }
     
-    self.viewModel.dataLoadingError = { [weak self] () -> Void in
-      self?.stopAllActivities()
-    }
-    
-    self.viewModel.emptyData = { [weak self] () -> Void in
+    self.viewModel.dataEmpty = { [weak self] () -> Void in
       self?.noDataLabel.isHidden = false
     }
     
     self.viewModel.showLoader = { () -> Void in
       PKHUD.sharedHUD.show()
+    }
+    
+    self.viewModel.stopRefreshing = { () -> Void in
+      self.refreshControl.endRefreshing()
+    }
+    
+    self.viewModel.hideLoader = { () -> Void in
+      PKHUD.sharedHUD.hide()
+    }
+    
+    self.viewModel.showLoadMoreSpinner = { () -> Void in
+      self.deliveriesTable.tableFooterView?.isHidden = false
+    }
+    
+    self.viewModel.hideLoadMoreSpinner = { () -> Void in
+      self.deliveriesTable.tableFooterView?.isHidden = true
     }
     
     self.viewModel.showAlert = { (message) -> Void in
@@ -141,18 +152,9 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
     }
   }
   
-  func stopAllActivities() {
-    DispatchQueue.main.async {
-      self.refreshControl.endRefreshing()
-      self.deliveriesTable.tableFooterView?.isHidden = true
-      PKHUD.sharedHUD.hide()
-    }
-  }
-  
   func reloadTable() {
     DispatchQueue.main.async {
       self.deliveriesTable.reloadData()
     }
   }
-  
 }

@@ -11,37 +11,47 @@ import Cache
 class DeliveryListViewModel: NSObject {
   
   var apiRequestManager: APIManagerProtocol = ApiManager()
-  var refresh:(() -> Void)?
-  var emptyData:(() -> Void)?
+  var stopRefreshing:(() -> Void)?
+  var dataEmpty:(() -> Void)?
   var dataLoadingSuccess:(() -> Void)?
   var dataLoadingError:(() -> Void)?
   var showLoader:(() -> Void)?
+  var hideLoader:(() -> Void)?
+  var showLoadMoreSpinner:(() -> Void)?
+  var hideLoadMoreSpinner:(() -> Void)?
   var showAlert:((_ message: String) -> Void)?
   var limit: Int = 20
   var offset: Int = 0
   var deliveries = [DeliveryObject]()
   var shouldRefresh = false
+  var isLoadingMoreData = false
   var willLoadFirstTime = false
   var isDataLoading = false
   var dataStoreKey: String?
   
   func getDeliveries() {
     
-    if self.isDataLoading || !self.isNetworkAvailable() {
+    if self.isDataLoading {
+      return
+    } else if !AssignmentHelper.isConnectedToInternet() {
+      self.doRequiredOperationsIfNoInternet()
       return
     }
     if willLoadFirstTime {
       self.showLoader?()
     }
     shouldRefresh ? (offset = 0) : (offset = self.deliveries.count)
+    if isLoadingMoreData {
+      self.showLoadMoreSpinner?()
+    }
     print("Calling API")
     
     apiRequestManager.fetchDeliveries(offset: offset, limit: limit, success: {[weak self] (deliveryResponse) in
       
-      if !deliveryResponse.isEmpty {
-        self?.processApiData(deliveryArray: deliveryResponse)
+      if deliveryResponse.isEmpty {
+        self?.hideLoadMoreSpinner?()
       } else {
-        self?.dataLoadingError?()
+        self?.processApiData(deliveryArray: deliveryResponse)
       }
       }, failure: {[weak self] (error) in
         self?.processFailedAPI(error: error)
@@ -52,7 +62,14 @@ class DeliveryListViewModel: NSObject {
     print("response sucesss")
     if self.shouldRefresh {
       self.deliveries.removeAll()
-      self.deleteDataFromCache(keyString: self.dataStoreKey ?? "")
+      self.deleteDataFromCache(keyString:
+        self.dataStoreKey ?? "")
+      self.stopRefreshing?()
+    } else if isLoadingMoreData {
+      self.hideLoadMoreSpinner?()
+      self.isLoadingMoreData = false
+    } else if willLoadFirstTime {
+      self.hideLoader?()
     }
     self.deliveries.append(contentsOf: deliveryArray)
     self.shouldRefresh = false
@@ -64,6 +81,14 @@ class DeliveryListViewModel: NSObject {
   
   func processFailedAPI(error: AnyObject) {
     print("response error")
+    if self.shouldRefresh {
+    self.stopRefreshing?()
+    } else if isLoadingMoreData {
+      self.hideLoadMoreSpinner?()
+      self.isLoadingMoreData = false
+    } else if willLoadFirstTime {
+      self.hideLoader?()
+    }
     self.dataLoadingError?()
     self.checkIfDataIsEmpty()
     self.isDataLoading = false
@@ -96,27 +121,23 @@ class DeliveryListViewModel: NSObject {
   
   func checkIfDataIsEmpty() {
     if self.deliveries.isEmpty {
-      self.emptyData?()
+      self.dataEmpty?()
       return
     }
   }
   
   func refreshData () {
-    if !self.isNetworkAvailable() {
+    if !AssignmentHelper.isConnectedToInternet() {
       return
     }
     self.shouldRefresh = true
     self.getDeliveries()
   }
   
-  func isNetworkAvailable() -> Bool {
-    if !AssignmentHelper.isConnectedToInternet() {
-      self.checkIfDataIsEmpty()
-      self.dataLoadingError?()
-      self.showAlert?(LocalizedKeys.noInternet)
-      return false
-    }
-    return true
+  func doRequiredOperationsIfNoInternet () {
+    self.checkIfDataIsEmpty()
+    self.dataLoadingError?()
+    self.showAlert?(LocalizedKeys.noInternet)
   }
   
   func getModelForIndex(index: Int) -> DeliveryObject {
@@ -138,6 +159,7 @@ class DeliveryListViewModel: NSObject {
   
   func loadMoreDataForTable(table: UITableView) {
     if (table.contentOffset.y + table.frame.size.height) >= (table.contentSize.height-200) {
+      self.isLoadingMoreData = true
       self.getDeliveries()
     }
   }

@@ -10,11 +10,13 @@ import XCTest
 @testable import DeliveryAssignment
 
 class StorageManagerTests: XCTestCase {
-  var listVM = DeliveryListViewModel()
+  
   let dataStoreKey = "dummyDataForCache"
+  var listVM = DeliveryListViewModel()
+  
   override func setUp() {
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    
+   
   }
   
   func testIfDataIsWrittenAndDeletedFromCache() {

@@ -25,10 +25,10 @@ class DeliveryTableViewCell: UITableViewCell {
     img.contentMode = .scaleAspectFill
     img.translatesAutoresizingMaskIntoConstraints = false
     message.translatesAutoresizingMaskIntoConstraints = false
-    message.font = UIFont.systemFont(ofSize: 20.0)
+    message.font = UIFont.systemFont(ofSize: TableViewConstants.labelFontSize)
     message.numberOfLines = 0
     contentView.layer.borderColor = UIColor.darkGray.cgColor
-    contentView.layer.borderWidth = 2.0
+    contentView.layer.borderWidth = TableViewConstants.cellBorderWidth
     contentView.addSubview(img)
     contentView.addSubview(message)
     
@@ -46,7 +46,7 @@ class DeliveryTableViewCell: UITableViewCell {
     let bottomSpaceToLabelConstraint = NSLayoutConstraint.init(item: contentView, attribute: .bottomMargin, relatedBy: .greaterThanOrEqual, toItem: img, attribute: .bottomMargin, multiplier: 1, constant: 10)
     self.contentView.addConstraint(bottomSpaceToLabelConstraint)
     
-    img.layer.cornerRadius = 40
+    img.layer.cornerRadius = TableViewConstants.imageCornerRadius
     img.layer.masksToBounds = true
     
   }

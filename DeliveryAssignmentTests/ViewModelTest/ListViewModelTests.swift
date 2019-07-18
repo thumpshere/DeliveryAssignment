@@ -76,6 +76,7 @@ class ListViewModelTests: XCTestCase {
 }
 
 class MockAPIManager: APIManagerProtocol {
+  
   func fetchDeliveries(offset: Int, limit: Int, success successBlock: @escaping (([DeliveryObject]) -> Void), failure failureBlock: @escaping ((AnyObject) -> Void)) {
     print("Calling mock API")
     successBlock( parsedArrayWithItem() ?? [DeliveryObject]())

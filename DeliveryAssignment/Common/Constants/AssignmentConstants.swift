@@ -41,8 +41,9 @@ struct CellIdentifiers {
   static let deliveryListCell = "deliveryCell"
 }
 
-struct CellViewConstants {
+struct TableViewConstants {
   static let imageCornerRadius: CGFloat = 40.0
   static let cellBorderWidth: CGFloat = 2.0
   static let labelFontSize: CGFloat = 20.0
+  static let spinnerSize: CGFloat = 30.0
 }

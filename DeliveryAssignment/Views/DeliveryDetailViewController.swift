@@ -21,6 +21,9 @@ class DeliveryDetailViewController: UIViewController, MKMapViewDelegate {
     super.viewDidLoad()
     self.createUI()
   }
+}
+
+extension DeliveryDetailViewController {
   
   func createUI() {
     self.title = LocalizedKeys.deliveryDetailTitle
@@ -38,11 +41,11 @@ class DeliveryDetailViewController: UIViewController, MKMapViewDelegate {
     img.translatesAutoresizingMaskIntoConstraints = false
     message.translatesAutoresizingMaskIntoConstraints = false
     deliveryDetailView.translatesAutoresizingMaskIntoConstraints = false
-    message.font = UIFont.systemFont(ofSize: CellViewConstants.labelFontSize)
+    message.font = UIFont.systemFont(ofSize: TableViewConstants.labelFontSize)
     message.numberOfLines = 0
     message.text = (self.viewModel?.deliveryDataObject?.descriptionField ?? "") + LocalizedKeys.appendedStringAt + (self.viewModel?.deliveryDataObject?.location?.address ?? "")
     deliveryDetailView.layer.borderColor = UIColor.darkGray.cgColor
-    deliveryDetailView.layer.borderWidth = CellViewConstants.cellBorderWidth
+    deliveryDetailView.layer.borderWidth = TableViewConstants.cellBorderWidth
     deliveryDetailView.addSubview(img)
     deliveryDetailView.addSubview(message)
     
@@ -74,7 +77,7 @@ class DeliveryDetailViewController: UIViewController, MKMapViewDelegate {
     let bottomSpaceToLabelConstraint = NSLayoutConstraint.init(item: deliveryDetailView, attribute: .bottomMargin, relatedBy: .greaterThanOrEqual, toItem: img, attribute: .bottomMargin, multiplier: 1, constant: 10)
     deliveryDetailView.addConstraint(bottomSpaceToLabelConstraint)
     
-    img.layer.cornerRadius = CellViewConstants.imageCornerRadius
+    img.layer.cornerRadius = TableViewConstants.imageCornerRadius
     img.layer.masksToBounds = true
     if let imgURL = self.viewModel?.deliveryDataObject?.imageUrl {
       img.sd_setImage(with: URL(string: imgURL), placeholderImage: nil, options: SDWebImageOptions.continueInBackground, context: nil)
