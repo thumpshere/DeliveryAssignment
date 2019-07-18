@@ -45,21 +45,23 @@ class DeliveryListViewModel: NSObject {
       self.showLoadMoreSpinner?()
     }
     print("Calling API")
-    
+    self.isDataLoading = true
     apiRequestManager.fetchDeliveries(offset: offset, limit: limit, success: {[weak self] (deliveryResponse) in
-      
+       print("response sucesss")
+      self?.isDataLoading = false
       if deliveryResponse.isEmpty {
         self?.hideLoadMoreSpinner?()
       } else {
         self?.processApiData(deliveryArray: deliveryResponse)
       }
       }, failure: {[weak self] (error) in
+         print("response error")
+         self?.isDataLoading = false
         self?.processFailedAPI(error: error)
     })
   }
   
   func processApiData(deliveryArray: [DeliveryObject]) {
-    print("response sucesss")
     if self.shouldRefresh {
       self.deliveries.removeAll()
       self.deleteDataFromCache(keyString:
@@ -73,14 +75,12 @@ class DeliveryListViewModel: NSObject {
     }
     self.deliveries.append(contentsOf: deliveryArray)
     self.shouldRefresh = false
-    self.isDataLoading = false
     self.willLoadFirstTime = false
     self.dataLoadingSuccess?()
     self.saveDataToCache(data: self.deliveries, keyString: self.dataStoreKey ?? "")
   }
   
   func processFailedAPI(error: AnyObject) {
-    print("response error")
     if self.shouldRefresh {
     self.stopRefreshing?()
     } else if isLoadingMoreData {
@@ -91,7 +91,6 @@ class DeliveryListViewModel: NSObject {
     }
     self.dataLoadingError?()
     self.checkIfDataIsEmpty()
-    self.isDataLoading = false
     if let err = error as? Error {
       self.showAlert?(err.localizedDescription)
     } else if let err = error as? String {

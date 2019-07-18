@@ -27,7 +27,7 @@ extension DeliveryDetailViewController {
   
   func createUI() {
     self.title = LocalizedKeys.deliveryDetailTitle
-    self.view.backgroundColor = .white
+    self.view.backgroundColor = UIColor.white
     self.mapView = (self.viewModel?.configureMapView(mapView: self.mapView))!
     self.showDetailView()
   }
@@ -36,7 +36,7 @@ extension DeliveryDetailViewController {
     
     let img = UIImageView()
     let message = UILabel()
-    img.backgroundColor = .red
+    img.backgroundColor = UIColor.red
     img.contentMode = .scaleAspectFill
     img.translatesAutoresizingMaskIntoConstraints = false
     message.translatesAutoresizingMaskIntoConstraints = false

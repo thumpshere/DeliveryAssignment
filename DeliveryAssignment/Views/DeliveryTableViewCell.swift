@@ -20,8 +20,8 @@ class DeliveryTableViewCell: UITableViewCell {
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    self.contentView.backgroundColor = .white
-    img.backgroundColor = .lightGray
+    self.contentView.backgroundColor = UIColor.white
+    img.backgroundColor = UIColor.lightGray
     img.contentMode = .scaleAspectFill
     img.translatesAutoresizingMaskIntoConstraints = false
     message.translatesAutoresizingMaskIntoConstraints = false

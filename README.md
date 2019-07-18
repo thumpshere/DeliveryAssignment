@@ -1,6 +1,6 @@
 # DeliveryAssignment (iOS)
 
-A prototype of an application which displays deliveries of goods and their delivery details with map location. 
+An application which displays deliveries of goods and their delivery details with  location and address on map. 
 
 # Installation
 
@@ -12,8 +12,8 @@ To run the project :
 - Open podfile from project directory. 
 - Open terminal and cd to the directory containing the Podfile.
 - Run the "pod install" command.
-- if You get any error try running "pod repo update" and then "pod install".
-- locate and open the .xcworkspace Xcode project file. (You should no longer open the xcodeproj file)
+- If You get any error try running "pod repo update" and then "pod install".
+- Locate and open the .xcworkspace Xcode project file. (You should no longer open the xcodeproj file)
 
 # Prerequisites
 Xcode : 10.2
@@ -50,8 +50,7 @@ Swift 5.0
 
 # SwiftLint
 - Integration of SwiftLint into an Xcode scheme to keep a codebase consistent and maintainable .
-- Install the swiftLint via cocoaPod and need to add a new "Run Script Phase" with:
--"${PODS_ROOT}/SwiftLint/swiftlint"
+- Install the swiftLint via cocoaPod and need to add a new "Run Script Phase" with:"${PODS_ROOT}/SwiftLint/swiftlint"
 - .swiftlint.yml file is used for basic set of rules . It is placed inside the project folder.
 
 # Map
@@ -61,7 +60,7 @@ Swift 5.0
 # Data Caching
 - DiskCache is used for data caching. Every time data is fetched from server , it appends the received data into existing one and then replaces it onto disk.
 - "Pull to refresh" will fetch data from starting index, and once the new data is received it will clear all previous data stored in local storage and write the newly received data.
-- when app is opened all the data is loaded from Cache and displayed on the list.
+- When app is opened all the data is loaded from Cache and displayed on the list.
 - Because the Cache doesnt support queries, Offline pagination is not available and all the stored data is loaded at once.
 
 # Firebase "Crashlytics"

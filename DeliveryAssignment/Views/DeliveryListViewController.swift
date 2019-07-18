@@ -26,7 +26,7 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
   func createUI () {
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     self.navigationController?.isNavigationBarHidden = false
-    self.view.backgroundColor = .white
+    self.view.backgroundColor = UIColor.white
     self.title = LocalizedKeys.deliveryListTitle
     PKHUD.sharedHUD.contentView = PKHUDProgressView()
     self.configureTableView()
@@ -52,7 +52,7 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
   }
   
   func configureTableView() {
-    noDataLabel.textColor = .red
+    noDataLabel.textColor = UIColor.red
     self.noDataLabel.textAlignment = .center
     self.noDataLabel.text = LocalizedKeys.noDataLabelText
     self.noDataLabel.isHidden = true

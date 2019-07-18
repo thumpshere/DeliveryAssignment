@@ -12,33 +12,32 @@ import XCTest
 class StorageManagerTests: XCTestCase {
   
   let dataStoreKey = "dummyDataForCache"
-  var listVM = DeliveryListViewModel()
+  let dummyFileName = "DummyApiResponse"
+  let dummyFileType = "plist"
   
   override func setUp() {
     // Put setup code here. This method is called before the invocation of each test method in the class.
-   
   }
   
   func testIfDataIsWrittenAndDeletedFromCache() {
     if  let ary = self.getDataFromPlist() {
-      let listVM = DeliveryListViewModel()
-      listVM.saveDataToCache(data: ary, keyString: dataStoreKey)
-      listVM.getDataFromCache(keyString: dataStoreKey)
-      XCTAssertTrue(listVM.deliveries.count>0)
+      StorageHelper.sharedInstance.saveDataToCache(data: ary, keyString: dataStoreKey)
+    let data = StorageHelper.sharedInstance.getDataFromCache(keyString: dataStoreKey)
+      XCTAssertTrue(data.count>0)
     }
   }
   
   func testIfDataIsDeletedfromCache () {
     if  let ary = self.getDataFromPlist() {
-      listVM.saveDataToCache(data: ary, keyString: dataStoreKey)
-      listVM.deleteDataFromCache(keyString: dataStoreKey)
-      listVM.getDataFromCache(keyString: dataStoreKey)
-      XCTAssertFalse(listVM.deliveries.count>0)
+      StorageHelper.sharedInstance.saveDataToCache(data: ary, keyString: dataStoreKey)
+      StorageHelper.sharedInstance.deleteDataFromCache(keyString: dataStoreKey)
+      let data = StorageHelper.sharedInstance.getDataFromCache(keyString: dataStoreKey)
+      XCTAssertFalse(data.count>0)
     }
   }
   
   private func getDataFromPlist () -> [DeliveryObject]? {
-    if let path = Bundle.main.path(forResource: "DummyApiResponse", ofType: "plist") {
+    if let path = Bundle.main.path(forResource: dummyFileName, ofType: "plist") {
       if let ary = NSArray(contentsOfFile: path) {
         return self.createParsedArray(array: ary)
       }
@@ -52,7 +51,6 @@ class StorageManagerTests: XCTestCase {
       let data = try? NSKeyedArchiver.archivedData(withRootObject: array, requiringSecureCoding: false)
       let parsedArray = try decoder.decode([DeliveryObject].self, from: data!)
       return parsedArray
-      
     } catch let err {
       print("Err", err)
       return nil
@@ -61,8 +59,7 @@ class StorageManagerTests: XCTestCase {
   
   override func tearDown() {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
-    
-    listVM.deleteDataFromCache(keyString: "dummyDataForCache")
+    StorageHelper.sharedInstance.deleteDataFromCache(keyString: dataStoreKey)
   }
   
   func testExample() {
