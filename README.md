@@ -31,10 +31,10 @@ Xcode : 10.2
 # Implementation
 
 - This app is implemented in MVVM design pattern.
-- The DeliveryDetail page displays the list of deliveries onto a table. 
+- The DeliveryList page displays the list of deliveries onto a table. 
 - All the data is writtten and fetched at once from disk cache.
-- At Initial stage first 20 records are fetched and displayed on the list.
-- When you scroll to end of the page it starts fetching next 20 deliveries and so on.
+- At Initial stage first 20 records are fetched from server and displayed on the list.
+- When you scroll to end of the page it starts fetching next 20 deliveries from server and so on.
 - The termination for retries of fetching next deliveries is not applied.
 - Clicking on a delivery will take on a delivery detail page which shows delivery location on map and details on bottom of the screen.
 
