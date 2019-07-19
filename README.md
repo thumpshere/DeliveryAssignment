@@ -34,7 +34,7 @@ Xcode : 10.2
 - The DeliveryDetail page displays the list of deliveries onto a table. 
 - All the data is writtten and fetched at once from disk cache.
 - At Initial stage first 20 records are fetched and displayed on the list.
-- when you scroll to end of the page it starts fetching next 20 deliveries and so on.
+- When you scroll to end of the page it starts fetching next 20 deliveries and so on.
 - The termination for retries of fetching next deliveries is not applied.
 - Clicking on a delivery will take on a delivery detail page which shows delivery location on map and details on bottom of the screen.
 
