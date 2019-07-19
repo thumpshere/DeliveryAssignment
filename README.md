@@ -40,6 +40,21 @@ Xcode : 10.2
 - Clicking on a delivery will take on a delivery detail page which shows delivery location on map and details on bottom of the screen.
 
 
+# Data Caching
+- DiskCache is used for data caching. Whenever data is fetched from server , it appends the received data into existing one and then replaces it onto disk.
+- "Pull to refresh" will fetch data from starting index, and once the new data is received it will clear all previous data stored in local storage and write the newly received data.
+- When app is opened all the data is loaded from Cache and displayed on the list.
+- Because the Cache doesnt support queries, Offline pagination is not available and all the stored data is loaded at once.
+
+# Assumptions        
+-    The app is designed for iPhones only .       
+-   App  supports multi languages , but right now only english language text is displaying.
+-    Mobile platform supported: iOS (10.x, 11.x, 12.x)        
+-   Device support - iPhone 5s, iPhone 6 Series, iPhone SE, iPhone 7 Series, iPhone 8 Series, iPhone X Series.    
+-    iPhone app support would be limited to portrait mode.
+-   Since there was no clarity on the maximum number of deliveries, it will look for next 20 deliveries every time the user scrolls at the end. 
+
+
 # Supported OS version
  iOS (10.x, 11.x, 12.x)  
 
@@ -68,26 +83,11 @@ Swift 5.0
 # Map
 - Native Apple map is used.
 
-
-# Data Caching
-- DiskCache is used for data caching. Whenever data is fetched from server , it appends the received data into existing one and then replaces it onto disk.
-- "Pull to refresh" will fetch data from starting index, and once the new data is received it will clear all previous data stored in local storage and write the newly received data.
-- When app is opened all the data is loaded from Cache and displayed on the list.
-- Because the Cache doesnt support queries, Offline pagination is not available and all the stored data is loaded at once.
-
 # Firebase "Crashlytics"
 -  We need to create account on firebase. Kindly replace "GoogleService-Info.plist" file with your plist file which you can generate while creating an app on firebase.
 
 # Unit Testing
 - Unit testing is done by using XCTest.
-
-# Assumptions        
--    The app is designed for iPhones only .       
--   App  supports multi languages , but right now only english language text is displaying.
--    Mobile platform supported: iOS (10.x, 11.x, 12.x)        
--   Device support - iPhone 5s, iPhone 6 Series, iPhone SE, iPhone 7 Series, iPhone 8 Series, iPhone X Series.    
--    iPhone app support would be limited to portrait mode.
--   Since there was no clarity on the maximum number of deliveries, it will look for next 20 deliveries every time the user scrolls at the end. 
 
 
 # Scope for Improvement
