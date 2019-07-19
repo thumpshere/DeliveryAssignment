@@ -19,7 +19,7 @@ class ApiManager: APIManagerProtocol {
     if !AssignmentHelper.isConnectedToInternet() {
       return failureBlock(LocalizedKeys.noInternet as AnyObject)
     }
-    let requestURL: String =  BaseURLs.testUrl + PathURLs.deliveriesUrl + ParameterKeys.keyOffset + "=\(offset)" + ParameterKeys.keyAmpersand + ParameterKeys.keyLimit + "=\(limit)"
+    let requestURL: String =  BaseURLs.url + PathURLs.deliveriesUrl + ParameterKeys.keyOffset + "=\(offset)" + ParameterKeys.keyAmpersand + ParameterKeys.keyLimit + "=\(limit)"
     
     let decoder = JSONDecoder()
     AF.request(requestURL).responseData { response in

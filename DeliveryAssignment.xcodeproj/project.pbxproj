@@ -37,6 +37,7 @@
 		49B6902422DDB199009DBEB1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B6901D22DDB199009DBEB1 /* Localizable.strings */; };
 		49B6902622DDDBC2009DBEB1 /* StorageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6902522DDDBC2009DBEB1 /* StorageManagerTests.swift */; };
 		49B6902822DDE213009DBEB1 /* AssignmentHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6902722DDE213009DBEB1 /* AssignmentHelperTests.swift */; };
+		49B6902C22E1A7E7009DBEB1 /* DeliveryDetailExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6902B22E1A7E7009DBEB1 /* DeliveryDetailExtension.swift */; };
 		49BF1F7B22DDA4AC00619EDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49BF1F7622DDA4AC00619EDA /* Assets.xcassets */; };
 		49BF1F7C22DDA4AC00619EDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BF1F7722DDA4AC00619EDA /* LaunchScreen.storyboard */; };
 		756F0552DD4EDD7A1D83B13B /* Pods_DeliveryAssignmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F95C22796DE15B90105307 /* Pods_DeliveryAssignmentTests.framework */; };
@@ -98,6 +99,8 @@
 		49B6901D22DDB199009DBEB1 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		49B6902522DDDBC2009DBEB1 /* StorageManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerTests.swift; sourceTree = "<group>"; };
 		49B6902722DDE213009DBEB1 /* AssignmentHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentHelperTests.swift; sourceTree = "<group>"; };
+		49B6902B22E1A7E7009DBEB1 /* DeliveryDetailExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailExtension.swift; sourceTree = "<group>"; };
+		49B6903A22E1A9C4009DBEB1 /* DeliveryAssignmentUITests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DeliveryAssignmentUITests copy-Info.plist"; path = "/Users/arpittripathi/Work/GItHub/DeliveryAssignment/DeliveryAssignmentUITests copy-Info.plist"; sourceTree = "<absolute>"; };
 		49BF1F7622DDA4AC00619EDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49BF1F7822DDA4AC00619EDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74E99CE7AB7F8842259CE636 /* Pods-DeliveryAssignmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryAssignmentTests.release.xcconfig"; path = "Target Support Files/Pods-DeliveryAssignmentTests/Pods-DeliveryAssignmentTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +148,7 @@
 				4937A6B422D74C6B0040B4A1 /* Products */,
 				707EDADE049536ACD5A3D487 /* Pods */,
 				80D69198E039FCACF2E05528 /* Frameworks */,
+				49B6903A22E1A9C4009DBEB1 /* DeliveryAssignmentUITests copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -198,6 +202,7 @@
 				4937A6EB22D74CD90040B4A1 /* DeliveryTableViewCell.swift */,
 				4937A6EC22D74CD90040B4A1 /* DeliveryListViewController.swift */,
 				4937A6ED22D74CD90040B4A1 /* DeliveryDetailViewController.swift */,
+				49B6902B22E1A7E7009DBEB1 /* DeliveryDetailExtension.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -615,6 +620,7 @@
 				4937A70222D74CD90040B4A1 /* DeliveryDetailViewController.swift in Sources */,
 				49B6902122DDB199009DBEB1 /* ApiManager.swift in Sources */,
 				4937A70122D74CD90040B4A1 /* DeliveryListViewController.swift in Sources */,
+				49B6902C22E1A7E7009DBEB1 /* DeliveryDetailExtension.swift in Sources */,
 				49B6901E22DDB199009DBEB1 /* AssignmentConstants.swift in Sources */,
 				4937A70A22D74CD90040B4A1 /* DeliveryDetailViewModel.swift in Sources */,
 				49B6902322DDB199009DBEB1 /* LocalizationConstants.swift in Sources */,

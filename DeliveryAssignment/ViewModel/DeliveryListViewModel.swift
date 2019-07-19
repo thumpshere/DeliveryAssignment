@@ -14,7 +14,6 @@ class DeliveryListViewModel: NSObject {
   var stopRefreshing:(() -> Void)?
   var dataEmpty:(() -> Void)?
   var dataLoadingSuccess:(() -> Void)?
-  var dataLoadingError:(() -> Void)?
   var showLoader:(() -> Void)?
   var hideLoader:(() -> Void)?
   var showLoadMoreSpinner:(() -> Void)?
@@ -29,43 +28,54 @@ class DeliveryListViewModel: NSObject {
   var isDataLoading = false
   var dataStoreKey: String?
   
+  // MARK: API calling
   func getDeliveries() {
     
     if self.isDataLoading {
       return
     } else if !AssignmentHelper.isConnectedToInternet() {
-      self.doRequiredOperationsIfNoInternet()
+      self.doRequiredOperationsForNoInternet()
       return
     }
+    
     if willLoadFirstTime {
       self.showLoader?()
     }
+    
     shouldRefresh ? (offset = 0) : (offset = self.deliveries.count)
+    
     if isLoadingMoreData {
       self.showLoadMoreSpinner?()
     }
+    
     print("Calling API")
     self.isDataLoading = true
-    apiRequestManager.fetchDeliveries(offset: offset, limit: limit, success: {[weak self] (deliveryResponse) in
-       print("response sucesss")
-      self?.isDataLoading = false
-      if deliveryResponse.isEmpty {
-        self?.hideLoadMoreSpinner?()
-      } else {
-        self?.processApiData(deliveryArray: deliveryResponse)
-      }
-      }, failure: {[weak self] (error) in
-         print("response error")
-         self?.isDataLoading = false
-        self?.processFailedAPI(error: error)
+    
+    apiRequestManager.fetchDeliveries(offset: offset, limit: limit,
+                                      success: {[weak self] (deliveryResponse) in
+                                        
+                                        print("response sucesss")
+                                        self?.isDataLoading = false
+                                        
+                                        if deliveryResponse.isEmpty {
+                                          self?.hideLoadMoreSpinner?()
+                                        } else {
+                                          self?.processApiData(deliveryArray: deliveryResponse)
+                                        }},
+                                      
+                                      failure: {[weak self] (error) in
+                                        print("response error")
+                                        self?.isDataLoading = false
+                                        self?.processFailedAPI(error: error)
     })
   }
   
+  // MARK: Response Handling
   func processApiData(deliveryArray: [DeliveryObject]) {
+    
     if self.shouldRefresh {
       self.deliveries.removeAll()
-      self.deleteDataFromCache(keyString:
-        self.dataStoreKey ?? "")
+      self.deleteDataFromCache(keyString: self.dataStoreKey ?? Constants.cachedObjectKey)
       self.stopRefreshing?()
     } else if isLoadingMoreData {
       self.hideLoadMoreSpinner?()
@@ -73,37 +83,44 @@ class DeliveryListViewModel: NSObject {
     } else if willLoadFirstTime {
       self.hideLoader?()
     }
+    
     self.deliveries.append(contentsOf: deliveryArray)
     self.shouldRefresh = false
     self.willLoadFirstTime = false
     self.dataLoadingSuccess?()
-    self.saveDataToCache(data: self.deliveries, keyString: self.dataStoreKey ?? "")
+    self.saveDataToCache(data: self.deliveries, keyString: self.dataStoreKey ?? Constants.cachedObjectKey)
   }
   
   func processFailedAPI(error: AnyObject) {
+    
     if self.shouldRefresh {
-    self.stopRefreshing?()
+      self.stopRefreshing?()
     } else if isLoadingMoreData {
       self.hideLoadMoreSpinner?()
       self.isLoadingMoreData = false
     } else if willLoadFirstTime {
       self.hideLoader?()
     }
-    self.dataLoadingError?()
     self.checkIfDataIsEmpty()
-    if let err = error as? Error {
-      self.showAlert?(err.localizedDescription)
-    } else if let err = error as? String {
-      self.showAlert?(err)
-    }
+    self.showAlert?(self.getErrorString(error: error))
   }
   
+  func getErrorString (error: AnyObject) -> String {
+    if let err = error as? Error {
+      return err.localizedDescription
+    } else if let err = error as? String {
+      return err
+    }
+    return ""
+  }
+  
+  // MARK: Memory Operations
   func saveDataToCache (data: [DeliveryObject], keyString: String) {
     StorageHelper.sharedInstance.saveDataToCache(data: data, keyString: keyString)
   }
   
-  func getDataFromCache(keyString: String) {
-    let cachedData = StorageHelper.sharedInstance.getDataFromCache(keyString: keyString)
+  func getDataFromCache() {
+    let cachedData = StorageHelper.sharedInstance.getDataFromCache(keyString: dataStoreKey ?? Constants.cachedObjectKey)
     if cachedData.count == 0 {
       willLoadFirstTime = true
       self.getDeliveries()
@@ -125,6 +142,7 @@ class DeliveryListViewModel: NSObject {
     }
   }
   
+  // MARK: Handling UI updation logic
   func refreshData () {
     if !AssignmentHelper.isConnectedToInternet() {
       return
@@ -133,9 +151,8 @@ class DeliveryListViewModel: NSObject {
     self.getDeliveries()
   }
   
-  func doRequiredOperationsIfNoInternet () {
+  func doRequiredOperationsForNoInternet () {
     self.checkIfDataIsEmpty()
-    self.dataLoadingError?()
     self.showAlert?(LocalizedKeys.noInternet)
   }
   

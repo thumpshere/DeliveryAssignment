@@ -31,7 +31,7 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
     PKHUD.sharedHUD.contentView = PKHUDProgressView()
     self.configureTableView()
     self.viewModel.dataStoreKey = Constants.cachedObjectKey
-    self.viewModel.getDataFromCache(keyString: Constants.cachedObjectKey)
+    self.viewModel.getDataFromCache()
     self.reloadTable()
   }
   
@@ -83,7 +83,7 @@ class DeliveryListViewController: UIViewController, UITableViewDelegate, UITable
     listCell.setData(model: modelObject)
     return listCell
   }
- 
+  
   // MARK: TABLEVIEW DELEGATE FUNCTIONS
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

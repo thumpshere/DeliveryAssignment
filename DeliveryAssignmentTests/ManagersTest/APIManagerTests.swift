@@ -10,7 +10,7 @@ import XCTest
 @testable import DeliveryAssignment
 
 class APIManagerTests: XCTestCase {
-    
+  
   override func setUp() {
     // Put setup code here. This method is called before the invocation of each test method in the class.
   }
@@ -24,7 +24,7 @@ class APIManagerTests: XCTestCase {
     testDeliveriesForURL(host: "mock-api-mobile.dev.lalamove.com", fileName: "Delivery.json")
   }
   
- private func testDeliveriesForURL(host: String, fileName: String) {
+  private func testDeliveriesForURL(host: String, fileName: String) {
     XCHttpStub.request(withPathRegex: host, withResponseFile: fileName)
     let responseExpectation = expectation(description: "return expected data of List")
     let apiRequestManager: APIManagerProtocol = ApiManager()
@@ -47,7 +47,7 @@ class APIManagerTests: XCTestCase {
     testDeliveriesForInvalidData(host: "mock-api-mobile.dev.lalamove.com", fileName: "InvalidDelivery.json")
   }
   
- private func testDeliveriesForInvalidData(host: String, fileName: String) {
+  private func testDeliveriesForInvalidData(host: String, fileName: String) {
     XCHttpStub.request(withPathRegex: host, withResponseFile: fileName)
     let responseExpectation = expectation(description: "Data not in correct format")
     let apiRequestManager: APIManagerProtocol = ApiManager()

@@ -33,7 +33,6 @@ class ListViewModelTests: XCTestCase {
     listViewModel.dataStoreKey = Constants.testObjectKey
     listViewModel.getDeliveries()
     XCTAssertEqual(listViewModel.deliveries.count, 1)
-    getViewModelForDeliveryDetail()
   }  
   
   private func getDataFromPlist () -> [DeliveryObject]? {
@@ -64,7 +63,11 @@ class ListViewModelTests: XCTestCase {
     }
   }
   
-  func getViewModelForDeliveryDetail () {
+  func testGetViewModelForDeliveryDetail () {
+    listViewModel.deliveries.removeAll()
+    listViewModel.shouldRefresh = true
+    listViewModel.dataStoreKey = Constants.testObjectKey
+    listViewModel.getDeliveries()
     let viewModel =  listViewModel.getViewModelForIndex(index: 0)
     XCTAssert(viewModel.isKind(of: DeliveryDetailViewModel.self))
   }

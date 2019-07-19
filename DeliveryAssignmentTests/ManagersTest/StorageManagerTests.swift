@@ -22,7 +22,7 @@ class StorageManagerTests: XCTestCase {
   func testIfDataIsWrittenAndDeletedFromCache() {
     if  let ary = self.getDataFromPlist() {
       StorageHelper.sharedInstance.saveDataToCache(data: ary, keyString: dataStoreKey)
-    let data = StorageHelper.sharedInstance.getDataFromCache(keyString: dataStoreKey)
+      let data = StorageHelper.sharedInstance.getDataFromCache(keyString: dataStoreKey)
       XCTAssertTrue(data.count>0)
     }
   }

@@ -30,7 +30,7 @@ struct ParameterKeys {
 }
 
 struct BaseURLs {
-  static let testUrl = "https://mock-api-mobile.dev.lalamove.com/"
+  static let url = "https://mock-api-mobile.dev.lalamove.com/"
 }
 
 struct PathURLs {
