@@ -20,7 +20,7 @@ Xcode : 10.2
 
 # Design  Pattern
 ## MVVM
-- Model: Manage and store the data received from server .
+- Model: Manage the data received from server and the data stored in Cache. 
 - ViewModel: Stands between view and model . All business logic are handled in viewModel. It receives the event form view and interacts with the model. ViewModel execute the logic to update the model based on the event. It also manages data that is to be stored on disk Cache
 - View: View and ViewControllers comes under this layer. This layer receives user interaction and send the events to ViewModel layer. It also observe the updation in viewModel and update the UI accordingly. 
 
@@ -69,7 +69,7 @@ Swift 5.0
 
 
 # Data Caching
-- DiskCache is used for data caching. Every time data is fetched from server , it appends the received data into existing one and then replaces it onto disk.
+- DiskCache is used for data caching. Whenever data is fetched from server , it appends the received data into existing one and then replaces it onto disk.
 - "Pull to refresh" will fetch data from starting index, and once the new data is received it will clear all previous data stored in local storage and write the newly received data.
 - When app is opened all the data is loaded from Cache and displayed on the list.
 - Because the Cache doesnt support queries, Offline pagination is not available and all the stored data is loaded at once.
@@ -86,7 +86,7 @@ Swift 5.0
 -    Mobile platform supported: iOS (10.x, 11.x, 12.x)        
 -   Device support - iPhone 5s, iPhone 6 Series, iPhone SE, iPhone 7 Series, iPhone 8 Series, iPhone X Series.    
 -    iPhone app support would be limited to portrait mode.
--   No termination condition for paging is applied 
+-   Since there was no clarity on the maximum number of deliveries, it will look for next 20 deliveries every time the user scrolls at the end. 
 
 
 # Scope for Improvement
