@@ -36,7 +36,7 @@ Xcode : 10.2
 - All the data is writtten and fetched at once from disk cache.
 - At Initial stage first 20 records are fetched from server and displayed on the list.
 - When you scroll to end of the page it starts fetching next 20 deliveries from server and so on.
-- The termination for retries of fetching next deliveries is not applied.
+- The maximum limit is not clear hence , the app will try to fetch next 20 records from the server when scrolled to bottom.
 - Clicking on a delivery will take on a delivery detail page which shows delivery location on map and details on bottom of the screen.
 
 
